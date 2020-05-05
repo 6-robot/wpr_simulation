@@ -1,0 +1,16 @@
+<launch>
+  
+  <arg name="model" default="$(find wpb_home_bringup)/urdf/wpb_home.urdf"/>
+  <arg name="gui" default="false" />
+  <arg name="rvizconfig" default="$(find wpr_simulation)/rviz/sensor.rviz" />
+
+  <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
+  <param name="use_gui" value="$(arg gui)"/>
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" >
+    <rosparam command="load" file="$(find wpb_home_bringup)/config/wpb_home.yaml" />
+  </node>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+
+</launch>

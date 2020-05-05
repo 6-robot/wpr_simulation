@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<robot name="bottle">
+
+<!-- base -->
+<link name="base_link">
+<visual>
+  <geometry>
+    <box size="0.01 0.01 0.001" />
+  </geometry>
+  <origin rpy = "0 0 0" xyz = "0 0 0"/>
+</visual>
+</link>
+
+<!-- body -->
+<link name = "body_link">
+  <visual>
+    <geometry>
+      <mesh filename="package://wpr_simulation/meshes/bottle.stl" scale="1 1 1"/>
+    </geometry>
+    <origin rpy = "1.57 0 0" xyz = "-0.03 0.03 0"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0.1" rpy="0 0 0" />
+    <geometry>
+      <cylinder length="0.2" radius="0.03"/>
+    </geometry>
+  </collision>
+  <inertial>
+    <mass value="0.02"/>
+    <inertia ixx="0.00538" ixy="0.0" ixz="0.0" iyy="0.00538" iyz="0.0" izz="0.00076"/>
+  </inertial>
+</link>
+<joint name = "base_to_body" type = "fixed">
+  <parent link = "base_link"/>
+  <child link = "body_link"/>
+  <origin rpy="0 0 0" xyz="0 0 0"/> <!--pos-->
+</joint>
+
+<gazebo reference="body_link">
+  <material>Gazebo/Red</material>
+</gazebo>
+
+</robot>

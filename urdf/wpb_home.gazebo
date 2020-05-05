@@ -1,0 +1,238 @@
+<?xml version="1.0"?>
+<robot name="wpb_home_gazebo">
+
+<link name="base_footprint">
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <geometry>
+      <box size="0.05 0.05 0.001" />
+    </geometry>
+  </visual>
+</link>
+
+<joint name="base_joint" type="fixed">
+  <origin xyz="0 0 0" rpy="0 0 0" />
+  <parent link="base_footprint"/>
+  <child link="base_link" />
+</joint>
+
+<!-- base -->
+<link name="base_link">
+  <visual>
+   <geometry>
+    <box size="0.01 0.01 0.001" />
+   </geometry>
+   <origin rpy = "0 0 0" xyz = "0 0 0"/>
+  </visual>
+</link>
+
+<!-- body -->
+<link name = "body_link">
+  <visual>
+    <geometry>
+      <mesh filename="package://wpr_simulation/meshes/wpb_home.dae" scale="1 1 1"/>
+    </geometry>
+    <origin rpy = "1.57 0 1.57" xyz = "-.225 -0.225 0"/>
+  </visual>
+  <collision>
+    <origin xyz=".013 0 .735" rpy="0 0 0" />
+    <geometry>
+      <cylinder length="1.50" radius="0.226"/>
+    </geometry>
+  </collision>
+  <inertial>
+    <mass value="20"/>
+    <inertia ixx="4.00538" ixy="0.0" ixz="0.0" iyy="4.00538" iyz="0.0" izz="0.51076"/>
+  </inertial>
+</link>
+<joint name = "base_to_body" type = "fixed">
+  <parent link = "base_link"/>
+  <child link = "body_link"/>
+  <origin rpy="0 0 0" xyz="0 0 0"/> <!--pos-->
+</joint>
+
+<!-- Lidar -->
+<link name = "laser">
+  <visual>
+   <geometry>
+      <cylinder length="0.001" radius="0.001"/>
+   </geometry>
+   <origin rpy = "0 0 0" xyz = "0 0 0"/>
+  </visual>
+</link>
+<joint name="laser_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0.15"  /> <!--pos-->
+    <parent link="base_link" />
+    <child link="laser" />
+</joint>
+
+<!-- Kinect -->
+<link name = "kinect2_dock">
+  <visual>
+   <geometry>
+    <!-- <box size=".01 .25 .07"/>-->
+    <box size="0.001 0.001 0.001"/>
+   </geometry>
+   <origin rpy = "0 0 0" xyz = "0 0 0"/>
+  </visual>
+</link>
+<joint name="kinect_height" type="fixed">
+  <parent link="base_link"/>
+  <child link="kinect2_dock"/>
+  <origin xyz="0.145 -0.013 1.37" rpy="0 0 0"/> <!--kinect_height -->
+</joint>
+
+<link name = "kinect2_ir_optical_frame">
+  <visual>
+   <geometry>
+    <!-- <box size=".25 .04 .07"/>-->
+    <box size="0.001 0.001 0.001"/>
+   </geometry>
+   <origin xyz = "0 0 0" rpy = "0 0 0"/>
+  </visual>
+</link>
+<joint name="kinect_pitch" type="fixed">
+  <origin xyz="0 0 0" rpy="0.0 0.5 0" /> <!--kinect_pitch -->
+  <parent link="kinect2_dock" />
+  <child link="kinect2_ir_optical_frame" />
+</joint>
+
+<link name = "kinect2_rgb_optical_frame">
+  <visual>
+   <geometry>
+    <box size="0.001 0.001 0.001"/>
+   </geometry>
+   <origin rpy = "0 0 0" xyz = "0 0 0"/>
+  </visual>
+</link>
+<joint name="kinect_rgb_joint" type="fixed">
+  <origin xyz="0 0 0" rpy="0 0 0" /> <!--pos-->
+  <parent link="kinect2_ir_optical_frame" />
+  <child link="kinect2_rgb_optical_frame" />
+</joint>
+
+<!-- Gazebo plugin for planar move -->
+<gazebo>
+  <plugin name="base_controller" filename="libgazebo_ros_planar_move.so">
+    <commandTopic>cmd_vel</commandTopic>
+    <odometryTopic>odom</odometryTopic>
+    <odometryFrame>odom</odometryFrame>
+    <odometryRate>20.0</odometryRate>
+    <robotBaseFrame>base_footprint</robotBaseFrame>
+  </plugin>
+</gazebo>
+
+<!-- Gazebo plugin for RpLidar A2 -->
+<gazebo reference="laser">
+  <sensor type="ray" name="rplidar_sensor">
+    <pose>0 0 0.06 0 0 0</pose>
+    <visualize>true</visualize>
+    <update_rate>10</update_rate>
+    <ray>
+      <scan>
+        <horizontal>
+          <samples>360</samples>
+          <resolution>1</resolution>
+          <min_angle>-3.14159265</min_angle>
+          <max_angle>3.14159265</max_angle>
+        </horizontal>
+      </scan>
+      <range>
+        <min>0.3</min>
+        <max>10.0</max>
+        <resolution>0.01</resolution>
+      </range>
+      <noise>
+        <type>gaussian</type>
+        <mean>0.0</mean>
+        <stddev>0.01</stddev>
+      </noise>
+    </ray>
+    <plugin name="rplidar_ros_controller" filename="libgazebo_ros_laser.so">
+      <topicName>scan</topicName>
+      <frameName>laser</frameName>
+    </plugin>
+  </sensor>
+</gazebo>
+
+<!-- Gazebo plugin for Kinect v2 -->
+<gazebo reference="kinect2_ir_optical_frame">
+  <sensor type="depth" name="kinect2_depth_sensor" >
+    <always_on>true</always_on>
+    <update_rate>20.0</update_rate>
+    <camera name="kinect2_depth_sensor">
+      <horizontal_fov>1.221730456</horizontal_fov>
+      <image>
+          <width>512</width>
+          <height>424</height>
+          <format>L8</format>
+      </image>
+      <clip>
+          <near>0.5</near>
+          <far>6.0</far>
+      </clip>
+      <noise>
+          <type>gaussian</type>
+          <mean>0.1</mean>
+          <stddev>0.07</stddev>
+      </noise>
+    </camera>
+    <plugin name="kinect2_depth_control" filename="libgazebo_ros_openni_kinect.so">
+        <cameraName>kinect2/sd</cameraName>
+        <alwaysOn>true</alwaysOn>
+        <updateRate>20.0</updateRate>
+        <imageTopicName>image_ir_rect</imageTopicName>
+        <depthImageTopicName>image_depth_rect</depthImageTopicName>
+        <pointCloudTopicName>points</pointCloudTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+        <frameName>kinect2_ir_optical_frame</frameName>
+        <pointCloudCutoff>0.5</pointCloudCutoff>
+        <pointCloudCutoffMax>6.0</pointCloudCutoffMax>
+        <baseline>0.1</baseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+    </plugin>
+  </sensor>
+</gazebo>
+<gazebo reference="kinect2_rgb_optical_frame">
+    <sensor type="camera" name="kinect2_rgb_sensor">
+        <always_on>true</always_on>
+        <update_rate>20.0</update_rate>
+        <camera name="kinect2_rgb_sensor">
+          <horizontal_fov>1.221730456</horizontal_fov>
+          <image>
+              <width>1920</width>
+              <height>1080</height>
+              <format>R8G8B8</format>
+          </image>
+          <clip>
+              <near>0.2</near>
+              <far>10.0</far>
+          </clip>
+          <noise>
+              <type>gaussian</type>
+              <mean>0.0</mean>
+              <stddev>0.007</stddev>
+          </noise>
+        </camera>
+        <plugin name="kinect2_rgb_controller" filename="libgazebo_ros_camera.so">
+          <alwaysOn>true</alwaysOn>
+          <update_rate>20.0</update_rate>
+          <cameraName>kinect2/hd</cameraName>
+          <imageTopicName>image_color_rect</imageTopicName>
+          <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+          <frameName>kinect2_rgb_optical_frame</frameName>
+          <baseline>0.1</baseline>
+          <distortionK1>0.0</distortionK1>
+          <distortionK2>0.0</distortionK2>
+          <distortionK3>0.0</distortionK3>
+          <distortionT1>0.0</distortionT1>
+          <distortionT2>0.0</distortionT2>
+        </plugin>
+    </sensor>
+</gazebo>
+
+</robot>

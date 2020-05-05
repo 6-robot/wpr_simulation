@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<robot name="bookshelft">
+<!-- base -->
+<link name="base_link">
+<visual>
+  <geometry>
+    <box size="0.01 0.01 0.001" />
+  </geometry>
+  <origin rpy = "0 0 0" xyz = "0 0 0"/>
+</visual>
+</link>
+
+  <!-- body -->
+  <link name = "body_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://wpr_simulation/meshes/bookshelft.dae" scale="1 1 1"/>
+      </geometry>
+      <origin rpy = "0 0.003 0" xyz = "0 0 0"/>
+    </visual>
+    <collision>
+      <origin xyz="0.2 0 0.3" rpy="0 0 0" />
+      <geometry>
+        <box size="0.4 1.2 0.6" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="10"/>
+      <inertia ixx="4.00538" ixy="0.0" ixz="0.0" iyy="4.00538" iyz="0.0" izz="0.51076"/>
+    </inertial>
+  </link>
+  <joint name = "base_to_body" type = "fixed">
+    <parent link = "base_link"/>
+    <child link = "body_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/> <!--pos-->
+  </joint>
+
+  <link name = "level_1_link">
+    <visual>
+      <geometry>
+        <box size="0.01 0.01 0.001" />
+      </geometry>
+      <origin rpy = "0 0 0" xyz = "0 0 0"/>
+    </visual>
+    <collision>
+      <origin xyz="0.2 0 0.02" rpy="0 0 0" />
+      <geometry>
+        <box size="0.38 1.2 0.04" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1"/>
+      <inertia ixx="1.00538" ixy="0.0" ixz="0.0" iyy="1.00538" iyz="0.0" izz="0.11076"/>
+    </inertial>
+  </link>
+  <joint name = "body_to_1" type = "fixed">
+    <parent link = "body_link"/>
+    <child link = "level_1_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0.91"/> <!--pos-->
+  </joint>
+
+  <link name = "level_2_link">
+    <visual>
+      <geometry>
+        <box size="0.01 0.01 0.001" />
+      </geometry>
+      <origin rpy = "0 0 0" xyz = "0 0 0"/>
+    </visual>
+    <collision>
+      <origin xyz="0.2 0 0.02" rpy="0 0 0" />
+      <geometry>
+        <box size="0.38 1.2 0.04" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1"/>
+      <inertia ixx="1.00538" ixy="0.0" ixz="0.0" iyy="1.00538" iyz="0.0" izz="0.11076"/>
+    </inertial>
+  </link>
+  <joint name = "1_to_2" type = "fixed">
+    <parent link = "level_1_link"/>
+    <child link = "level_2_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0.35"/> <!--pos-->
+  </joint>
+
+   <link name = "level_3_link">
+    <visual>
+      <geometry>
+        <box size="0.01 0.01 0.001" />
+      </geometry>
+      <origin rpy = "0 0 0" xyz = "0 0 0"/>
+    </visual>
+    <collision>
+      <origin xyz="0.2 0 0.02" rpy="0 0 0" />
+      <geometry>
+        <box size="0.38 1.2 0.04" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1"/>
+      <inertia ixx="1.00538" ixy="0.0" ixz="0.0" iyy="1.00538" iyz="0.0" izz="0.11076"/>
+    </inertial>
+  </link>
+  <joint name = "2_to_3" type = "fixed">
+    <parent link = "level_2_link"/>
+    <child link = "level_3_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0.35"/> <!--pos-->
+  </joint>
+
+
+</robot>
