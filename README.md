@@ -2,13 +2,12 @@
 
 ## 准备工作
 
-1. 安装ROS桌面完整版(kinetic/indigo):
-```
-sudo apt-get install ros-indigo-desktop-full
-```
+1. 安装ROS桌面完整版(Kinetic/Ubuntu 16.04):
 ```
 sudo apt-get install ros-kinetic-desktop-full
 ```
+由于Indigo/Ubuntu 14.04集成的Gazebo版本太过古老，所以无法进行支持，建议升级到Kinetic/Ubuntu 16.04。
+
 2. 获取源码:
 ```
 cd ~/catkin_ws/src/
