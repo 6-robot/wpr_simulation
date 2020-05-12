@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<robot name="tea_table">
+<!-- base -->
+<link name="base_link">
+<visual>
+  <geometry>
+    <box size="0.01 0.01 0.001" />
+  </geometry>
+  <origin rpy = "0 0 0" xyz = "0 0 0"/>
+</visual>
+</link>
+
+<!-- body -->
+<link name = "body_link">
+  <visual>
+    <geometry>
+      <mesh filename="package://wpr_simulation/meshes/tea_table.dae" scale="1 1 1"/>
+    </geometry>
+    <origin rpy = "0 0 0" xyz = "-0.35 -0.704 -0.38"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <geometry>
+      <box size="0.7 1.40 0.08"/>
+    </geometry>
+  </collision>
+  <inertial>
+    <mass value="1"/>
+    <inertia ixx="1.00538" ixy="0.0" ixz="0.0" iyy="1.00538" iyz="0.0" izz="0.11076"/>
+  </inertial>
+</link>
+<joint name = "base_to_body" type = "fixed">
+  <parent link = "base_link"/>
+  <child link = "body_link"/>
+  <origin rpy="0 0 0" xyz="0 0 0.38"/> <!--pos-->
+</joint>
+
+<!-- top board -->
+<link name = "top_link">
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <geometry>
+      <box size="0.7 1.40 0.02"/>
+    </geometry>
+  </collision>
+</link>
+<joint name = "base_to_top" type = "fixed">
+  <parent link = "base_link"/>
+  <child link = "top_link"/>
+  <origin rpy="0 0 0" xyz="0 0 0.06"/> <!--pos-->
+</joint>
+
+<!-- leg -->
+<link name = "lf_link">
+  <collision>
+    <origin xyz="0.30 -0.65 0.19" rpy="0 0 0" />
+    <geometry>
+      <box size="0.1 0.1 0.38"/>
+    </geometry>
+  </collision>
+</link>
+<joint name = "body_to_lf" type = "fixed">
+  <parent link = "base_link"/>
+  <child link = "lf_link"/>
+  <origin rpy="0 0 0" xyz="0 0 0"/> <!--pos-->
+</joint>
+
+<link name = "rf_link">
+  <collision>
+    <origin xyz="0.30 0.65 0.19" rpy="0 0 0" />
+    <geometry>
+      <box size="0.1 0.1 0.38"/>
+    </geometry>
+  </collision>
+</link>
+<joint name = "body_to_rf" type = "fixed">
+  <parent link = "base_link"/>
+  <child link = "rf_link"/>
+  <origin rpy="0 0 0" xyz="0 0 0"/> <!--pos-->
+</joint>
+
+
+<link name = "lb_link">
+  <collision>
+    <origin xyz="-0.30 -0.65 0.19" rpy="0 0 0" />
+    <geometry>
+      <box size="0.1 0.1 0.38"/>
+    </geometry>
+  </collision>
+</link>
+<joint name = "body_to_lb" type = "fixed">
+  <parent link = "base_link"/>
+  <child link = "lb_link"/>
+  <origin rpy="0 0 0" xyz="0 0 0"/> <!--pos-->
+</joint>
+
+<link name = "rb_link">
+  <collision>
+    <origin xyz="-0.30 0.65 0.19" rpy="0 0 0" />
+    <geometry>
+      <box size="0.1 0.1 0.38"/>
+    </geometry>
+  </collision>
+</link>
+<joint name = "body_to_rb" type = "fixed">
+  <parent link = "base_link"/>
+  <child link = "rb_link"/>
+  <origin rpy="0 0 0" xyz="0 0 0"/> <!--pos-->
+</joint>
+
+
+</robot>

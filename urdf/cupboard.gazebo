@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<robot name="cupboard">
+<!-- base -->
+<link name="base_link">
+<visual>
+  <geometry>
+    <box size="0.01 0.01 0.001" />
+  </geometry>
+  <origin rpy = "0 0 0" xyz = "0 0 0"/>
+</visual>
+</link>
+
+<!-- body -->
+<link name = "body_link">
+  <visual>
+    <geometry>
+      <mesh filename="package://wpr_simulation/meshes/cupboard.dae" scale="1 1 1"/>
+    </geometry>
+    <origin rpy = "0 0 0" xyz = "-0.175 -0.252 -0.01"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <geometry>
+      <box size="0.35 0.50 0.02"/>
+    </geometry>
+  </collision>
+  <inertial>
+    <mass value="1"/>
+    <inertia ixx="1.00538" ixy="0.0" ixz="0.0" iyy="1.00538" iyz="0.0" izz="0.11076"/>
+  </inertial>
+</link>
+<joint name = "base_to_body" type = "fixed">
+  <parent link = "base_link"/>
+  <child link = "body_link"/>
+  <origin rpy="0 0 0" xyz="0 0 0"/> <!--pos-->
+</joint>
+
+<!-- side board -->
+<link name = "left_link">
+  <collision>
+    <origin xyz="0 -0.235 0.25" rpy="0 0 0" />
+    <geometry>
+      <box size="0.35 0.03 0.48"/>
+    </geometry>
+  </collision>
+</link>
+<joint name = "body_to_left" type = "fixed">
+  <parent link = "body_link"/>
+  <child link = "left_link"/>
+  <origin rpy="0 0 0" xyz="0 0 0"/> <!--pos-->
+</joint>
+
+<link name = "right_link">
+  <collision>
+    <origin xyz="0 0.235 0.25" rpy="0 0 0" />
+    <geometry>
+      <box size="0.35 0.03 0.48"/>
+    </geometry>
+  </collision>
+</link>
+<joint name = "body_to_right" type = "fixed">
+  <parent link = "body_link"/>
+  <child link = "right_link"/>
+  <origin rpy="0 0 0" xyz="0 0 0"/> <!--pos-->
+</joint>
+
+<!-- mid board -->
+<link name = "mid_link">
+  <collision>
+    <origin xyz="0 -0.05 0.215" rpy="0 0 0" />
+    <geometry>
+      <box size="0.35 0.02 0.41"/>
+    </geometry>
+  </collision>
+</link>
+<joint name = "body_to_mid" type = "fixed">
+  <parent link = "body_link"/>
+  <child link = "mid_link"/>
+  <origin rpy="0 0 0" xyz="0 0 0"/> <!--pos-->
+</joint>
+
+<!-- back board -->
+<link name = "back_link">
+  <collision>
+    <origin xyz="-0.17 0 0.25" rpy="0 0 0" />
+    <geometry>
+      <box size="0.02 0.43 0.48"/>
+    </geometry>
+  </collision>
+</link>
+<joint name = "body_to_back" type = "fixed">
+  <parent link = "body_link"/>
+  <child link = "back_link"/>
+  <origin rpy="0 0 0" xyz="0 0 0"/> <!--pos-->
+</joint>
+
+<!-- top board -->
+<link name = "top_link">
+  <collision>
+    <origin xyz="0 0 0.43" rpy="0 0 0" />
+    <geometry>
+      <box size="0.35 0.44 0.02"/>
+    </geometry>
+  </collision>
+</link>
+<joint name = "body_to_top" type = "fixed">
+  <parent link = "body_link"/>
+  <child link = "top_link"/>
+  <origin rpy="0 0 0" xyz="0 0 0"/> <!--pos-->
+</joint>
+
+</robot>

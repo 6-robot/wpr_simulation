@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<robot name="bed">
+<!-- base -->
+<link name="base_link">
+<visual>
+  <geometry>
+    <box size="0.01 0.01 0.001" />
+  </geometry>
+  <origin rpy = "0 0 0" xyz = "0 0 0"/>
+</visual>
+</link>
+
+<!-- body -->
+<link name = "body_link">
+  <visual>
+    <geometry>
+      <mesh filename="package://wpr_simulation/meshes/bed.dae" scale="1 1 1"/>
+    </geometry>
+    <origin rpy = "0 0 0" xyz = "0 0 0"/>
+  </visual>
+  <collision>
+    <origin xyz="1.0 -0.75 0.23" rpy="0 0 0" />
+    <geometry>
+      <box size="2.00 1.50 0.46"/>
+    </geometry>
+  </collision>
+  <inertial>
+    <mass value="10"/>
+    <inertia ixx="4.00538" ixy="0.0" ixz="0.0" iyy="4.00538" iyz="0.0" izz="0.51076"/>
+  </inertial>
+</link>
+<joint name = "base_to_body" type = "fixed">
+  <parent link = "base_link"/>
+  <child link = "body_link"/>
+  <origin rpy="0 0 0" xyz="0 0 0"/> <!--pos-->
+</joint>
+
+</robot>

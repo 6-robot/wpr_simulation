@@ -14,6 +14,9 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  geometry_msgs
+  move_base_msgs 
+  actionlib
 )
 
 ## System dependencies are found with CMake's conventions
@@ -213,5 +216,21 @@ add_executable(demo_vel_ctrl
 )
 add_dependencies(demo_vel_ctrl ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(demo_vel_ctrl
+  ${catkin_LIBRARIES}
+)
+
+add_executable(keyboard_vel_ctrl
+  src/keyboard_vel_ctrl.cpp
+)
+add_dependencies(keyboard_vel_ctrl ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(keyboard_vel_ctrl
+  ${catkin_LIBRARIES}
+)
+
+add_executable(demo_simple_goal
+  src/demo_simple_goal.cpp
+)
+add_dependencies(demo_simple_goal ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(demo_simple_goal
   ${catkin_LIBRARIES}
 )

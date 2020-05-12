@@ -1,25 +1,25 @@
 <?xml version="1.0"?>
 <package format="2">
   <name>wpr_simulation</name>
-  <version>0.0.0</version>
+  <version>0.0.2</version>
   <description>The wpr_simulation package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->
   <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
-  <maintainer email="robot@todo.todo">robot</maintainer>
+  <maintainer email="zhangwanjie@6-robot.com">Zhang Wanjie</maintainer>
 
 
   <!-- One license tag required, multiple allowed, one license per tag -->
   <!-- Commonly used license strings: -->
   <!--   BSD, MIT, Boost Software License, GPLv2, GPLv3, LGPLv2.1, LGPLv3 -->
-  <license>TODO</license>
+  <license>GPLv3</license>
 
 
   <!-- Url tags are optional, but multiple are allowed, one per tag -->
   <!-- Optional attribute type can be: website, bugtracker, or repository -->
   <!-- Example: -->
-  <!-- <url type="website">http://wiki.ros.org/wpr_simulation</url> -->
+  <url type="website">http://www.6-robot.com</url>
 
 
   <!-- Author tags are optional, multiple are allowed, one per tag -->
@@ -55,19 +55,27 @@
   <build_depend>roscpp</build_depend>
   <build_depend>rospy</build_depend>
   <build_depend>std_msgs</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>move_base_msgs</build_depend>
+  <build_depend>actionlib</build_depend>
   <!--   <build_export_depend>controller_manager</build_export_depend> -->
   <!--   <build_export_depend>joint_state_controller</build_export_depend> -->
   <build_export_depend>robot_state_publisher</build_export_depend>
   <build_export_depend>roscpp</build_export_depend>
   <build_export_depend>rospy</build_export_depend>
   <build_export_depend>std_msgs</build_export_depend>
+  <build_export_depend>geometry_msgs</build_export_depend>
+  <build_export_depend>move_base_msgs</build_export_depend>
+  <build_export_depend>actionlib</build_export_depend>
   <!--   <exec_depend>controller_manager</exec_depend> -->
   <!--   <exec_depend>joint_state_controller</exec_depend> -->
   <exec_depend>robot_state_publisher</exec_depend>
   <exec_depend>roscpp</exec_depend>
   <exec_depend>rospy</exec_depend>
   <exec_depend>std_msgs</exec_depend>
-
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>move_base_msgs</exec_depend>
+  <exec_depend>actionlib</exec_depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>

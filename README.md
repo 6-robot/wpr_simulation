@@ -27,3 +27,15 @@ catkin_make
 roslaunch wpr_simulation wpb_simple.launch
 ```
 ![wpb_simple pic](./media/wpb_simple.png)
+
+SLAM环境地图创建:
+```
+roslaunch wpr_simulation wpb_gmapping.launch
+```
+![wpb_gmapping pic](./media/wpb_gmapping.png)
+
+Navigation导航:
+```
+roslaunch wpr_simulation wpb_navigation.launch
+```
+![wpb_navigation pic](./media/wpb_navigation.png)
