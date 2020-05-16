@@ -26,16 +26,16 @@ catkin_make
 ```
 roslaunch wpr_simulation wpb_simple.launch
 ```
-![wpb_simple pic](./media/wpb_simple.png)
+![wpb_simple pic](https://user-images.githubusercontent.com/17635413/82132384-cc705000-9811-11ea-89ee-20a4fb938f80.png)
 
 SLAM环境地图创建:
 ```
 roslaunch wpr_simulation wpb_gmapping.launch
 ```
-![wpb_gmapping pic](./media/wpb_gmapping.png)
+![wpb_gmapping pic](https://user-images.githubusercontent.com/17635413/82132405-fa559480-9811-11ea-9b32-bd096e844d2b.png)
 
 Navigation导航:
 ```
 roslaunch wpr_simulation wpb_navigation.launch
 ```
-![wpb_navigation pic](./media/wpb_navigation.png)
+![wpb_navigation pic](https://user-images.githubusercontent.com/17635413/82132412-093c4700-9812-11ea-959a-f40f1be40cab.png)
