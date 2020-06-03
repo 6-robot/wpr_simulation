@@ -12,8 +12,20 @@ sudo apt-get install ros-kinetic-desktop-full
 ```
 cd ~/catkin_ws/src/
 git clone https://github.com/6-robot/wpr_simulation.git
+git clone https://github.com/6-robot/wpb_home.git
 ```
-3. 编译
+3. 安装依赖项:  
+ROS Kinetic/Ubuntu 16.04
+```
+cd ~/catkin_ws/src/wpb_home/wpb_home_bringup/scripts
+./install_for_kinetic.sh
+```
+  ROS Melodic/Ubuntu 18.04
+```
+cd ~/catkin_ws/src/wpb_home/wpb_home_bringup/scripts
+./install_for_melodic.sh
+```
+4. 编译
 ```
 cd ~/catkin_ws
 catkin_make
