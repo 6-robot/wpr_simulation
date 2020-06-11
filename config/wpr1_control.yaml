@@ -1,0 +1,57 @@
+wpr1:
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 30  
+  
+  # Position Controllers ---------------------------------------
+  base_to_torso_position_controller:
+    type: position_controllers/JointPositionController
+    joint: base_to_torso
+    pid: {p: 100.0, i: 5.0, d: 50.0, i_clamp_max: 40.0, i_clamp_min: -430.0}
+
+  torso_to_upperarm_position_controller:
+    type: position_controllers/JointPositionController
+    joint: torso_to_upperarm
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  upperarm_to_forearm_position_controller:
+    type: position_controllers/JointPositionController
+    joint: upperarm_to_forearm
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  forearm_to_palm_position_controller:
+    type: position_controllers/JointPositionController
+    joint: forearm_to_palm
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  mani_palm_finger_position_controller:
+    type: position_controllers/JointPositionController
+    joint: mani_palm_finger
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  #PID Gains ---------------------------------------
+  gazebo_ros_control:
+     pid_gains:
+      base_to_torso:
+          p: 100.0
+          i: 30.0
+          d: 30.0
+          i_clamp_max: 40.0
+          i_clamp_min: -430.0
+      torso_to_upperarm:
+          p: 100.0
+          i: 0.01
+          d: 10.0
+      upperarm_to_forearm:
+          p: 100.0
+          i: 0.01
+          d: 10.0
+      forearm_to_palm:
+          p: 100.0
+          i: 0.01
+          d: 10.0
+      mani_palm_finger:
+          p: 100.0
+          i: 0.01
+          d: 10.0

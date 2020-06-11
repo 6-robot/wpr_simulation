@@ -1,0 +1,461 @@
+<?xml version="1.0"?>
+<robot name="wpr1">
+
+<link name="base_footprint">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.05 0.05 0.001" />
+      </geometry>
+    </visual>
+</link>
+
+<joint name="base_joint" type="fixed">
+  <origin xyz="0 0 0" rpy="0 0 0" />
+  <parent link="base_footprint"/>
+  <child link="base_link" />
+</joint>
+
+  <!-- base -->
+  <link name="base_link">
+    <visual>
+    <geometry>
+      <mesh filename="package://wpr1_bringup/meshes/base.dae" scale="1 1 1"/>
+    </geometry>
+    <origin rpy = "1.57 0 -1.57" xyz = "0.22 .293 0"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.025 0 0.14" rpy="0 0 0" />
+      <geometry>
+        <cylinder length="0.28" radius="0.3"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="20"/>
+      <inertia ixx="4.00538" ixy="0.0" ixz="0.0" iyy="4.00538" iyz="0.0" izz="0.51076"/>
+    </inertial>
+  </link>
+
+  <!-- torso -->
+  <link name = "torso_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://wpr1_bringup/meshes/torso.dae" scale="1 1 1"/>
+      </geometry>
+      <origin rpy = "1.57 0 0" xyz = "0 0.1405 0"/>
+    </visual>
+    <collision>
+      <origin xyz="0.09 0 0.45" rpy="0 0 0"/>
+      <geometry>
+       <box size="0.18 0.14 0.9"/>
+      </geometry>
+    </collision>
+     <inertial>
+      <mass value="1"/>
+      <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.01"/>
+    </inertial>
+  </link>
+  <joint name = "base_to_torso" type="prismatic">
+    <parent link = "base_link"/>
+    <child link = "torso_link"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="0" upper="0.4" velocity="0.5"/>
+    <origin rpy="0 0 0" xyz="-0.255 0 0.287"/> <!--pos-->
+  </joint>
+  <transmission name="base_to_torso_transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="base_to_torso">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>  
+    <actuator name="base_to_torso_motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <!-- upper arm -->
+  <link name = "upperarm_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://wpr1_bringup/meshes/upperarm.dae" scale="1 1 1"/>
+      </geometry>
+      <origin rpy = "0 -1.57 0" xyz = "0.235 -0.087 -0.046"/>
+    </visual>
+    <collision>
+      <origin xyz="0.08 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.18 0.15  0.1"/>
+      </geometry>
+    </collision>
+     <inertial>
+      <mass value="1"/>
+      <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.01"/>
+    </inertial>
+  </link>
+  <joint name = "torso_to_upperarm" type="revolute">
+    <parent link = "torso_link"/>
+    <child link = "upperarm_link"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="-1.57" upper="1.57" velocity="0.5"/>
+    <origin xyz="0.266 0 0.55" rpy="0 0 0" /> <!--pos-->
+  </joint>
+  <transmission name="torso_to_upperarm_transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="torso_to_upperarm">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>  
+    <actuator name="torso_to_upperarm_motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <!-- fore arm -->
+  <link name = "forearm_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://wpr1_bringup/meshes/forearm.dae" scale="1 1 1"/>
+      </geometry>
+      <origin rpy = "1.57 1.57 0" xyz = "-0.033 0.07 0.046"/>
+    </visual>
+    <collision>
+      <origin xyz="0.20 0 0" rpy="0 1.57 0"/>
+      <geometry>
+       <cylinder length="0.24" radius="0.05"/>
+      </geometry>
+    </collision>
+     <inertial>
+      <mass value="1"/>
+      <inertia ixx="1.00538" ixy="0.0" ixz="0.0" iyy="1.00538" iyz="0.0" izz="0.01076"/>
+    </inertial>
+  </link>
+  <joint name = "upperarm_to_forearm" type="revolute">
+    <parent link = "upperarm_link"/>
+    <child link = "forearm_link"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="-1.57" upper="1.57" velocity="0.5"/>
+    <origin xyz="0.168 0 0" rpy="0 0 0" /> <!--pos-->
+  </joint>
+  <transmission name="upperarm_to_forearm_transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="upperarm_to_forearm">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>  
+    <actuator name="upperarm_to_forearm_motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <!-- palm -->
+  <link name = "palm_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://wpr1_bringup/meshes/palm.dae" scale="1 1 1"/>
+      </geometry>
+      <origin rpy = "0 3.14 -1.57" xyz = "0 -0.0655 0.069"/>
+    </visual>
+    <collision>
+      <origin xyz="0.16 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.08 0.12  0.03"/>
+      </geometry>
+    </collision>
+     <inertial>
+      <mass value="1"/>
+      <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.01"/>
+    </inertial>
+  </link>
+  <joint name = "forearm_to_palm" type="revolute">
+    <parent link = "forearm_link"/>
+    <child link = "palm_link"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="1000.0" lower="-3.14" upper="3.14" velocity="0.5"/>
+    <origin xyz="0.209 0 0" rpy="0 0 0" /> <!--pos-->
+  </joint>
+  <transmission name="forearm_to_palm_transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="forearm_to_palm">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>  
+    <actuator name="forearm_to_palm_motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <!-- finger -->
+    <link name = "mani_left_finger">
+      <visual>
+          <geometry>
+              <mesh filename="package://wpr1_bringup/meshes/finger.dae" scale="1 1 1"/>
+          </geometry>
+          <origin rpy = "0 0 -1.57" xyz = "-0.005 0.005 -0.0195"/>
+      </visual>
+      <collision>
+      <origin xyz="0.071 -0.0568 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.07 0.005 0.023"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+    </inertial>
+  </link>
+  <joint name = "mani_palm_finger" type = "revolute">
+      <parent link = "palm_link"/>
+      <child link = "mani_left_finger"/>
+      <origin xyz = "0.188 0.06 0"/>
+      <axis xyz = "0 0 1"/>
+      <limit effort = "1000.0" lower="0" upper="1.0" velocity="0.5"/>
+  </joint>
+  <transmission name="mani_palm_finger_transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="mani_palm_finger">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>  
+    <actuator name="mani_palm_finger_motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+   <link name = "mani_right_finger">
+    <visual>
+        <geometry>
+            <mesh filename="package://wpr1_bringup/meshes/finger.dae" scale="1 1 1"/>
+        </geometry>
+        <origin rpy = "3.14 0 1.57" xyz = "-0.005 -0.005 0.0195"/>
+    </visual>
+    <collision>
+      <origin xyz="0.071 0.0568 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.07 0.005 0.023"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+    </inertial>
+    </link>
+    <joint name = "mani_palm_right_finger" type = "revolute">
+        <parent link = "palm_link"/>
+        <child link = "mani_right_finger"/>
+        <origin xyz = "0.188 -0.06 0"/>
+        <axis xyz = "0 0 -1"/>
+        <limit effort = "1000.0" lower="0" upper="1.0" velocity="0.5"/>
+        <mimic joint = "mani_palm_finger" multiplier = "1" offset = "0"/>
+    </joint>
+    
+  <!-- *****************-->
+  <!-- Lidar -->
+  <link name = "laser">
+    <visual>
+    <geometry>
+      <cylinder length="0.01" radius="0.01"/>
+    </geometry>
+    <origin rpy = "0 0 0" xyz = "0 0 0"/>
+    </visual>
+  </link>
+  <joint name="laser_joint" type="fixed">
+      <origin rpy="0 0 0" xyz="0.19 0 0.18"  /> <!--pos-->
+      <parent link="base_link" />
+      <child link="laser" />
+  </joint>
+
+  <!-- Kinect -->
+<link name = "kinect2_dock">
+  <visual>
+   <geometry>
+    <box size="0 0 0"/>
+   </geometry>
+   <origin rpy = "0 0 0" xyz = "0 0 0"/>
+  </visual>
+</link>
+<joint name="kinect_height" type="prismatic">
+    <parent link="torso_link"/>
+    <child link="kinect2_dock"/>
+    <limit effort="1000.0" lower="0" upper="1.35" velocity="0.5"/>
+    <origin xyz="0.174 0 0" rpy="0 -1.5707963 0"/>
+  </joint>
+
+<link name = "kinect2_ir_optical_frame">
+  <visual>
+   <geometry>
+    <!-- <box size=".25 .04 .07"/>-->
+    <box size="0 0 0"/>
+   </geometry>
+   <origin xyz = "0 0 0" rpy = "0 0 0"/>
+   <material name = "blue"/>
+  </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="1.065 1.25 0.045"/>
+      </geometry>
+    </collision>
+</link>
+
+<joint name="kinect_pitch" type="revolute">
+    <axis xyz="1 0 0"/>
+    <limit effort="1000.0" lower="-1.57" upper="1.57" velocity="0.5"/>
+    <origin xyz="0 0 0" rpy="3.1415926 0 -1.5707963" /> <!--pos-->
+    <parent link="kinect2_dock" />
+    <child link="kinect2_ir_optical_frame" />
+</joint>
+
+<link name = "kinect2_rgb_optical_frame">
+  <visual>
+   <geometry>
+    <box size="0 0 0"/>
+   </geometry>
+   <origin rpy = "0 0 0" xyz = "0 0 0" />
+   <material name = "blue" />
+  </visual>
+</link>
+<joint name="kinect_hd_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" /> <!--pos-->
+    <parent link="kinect2_ir_optical_frame" />
+    <child link="kinect2_rgb_optical_frame" />
+</joint>
+
+<gazebo>
+        <self_collide>1</self_collide>
+ </gazebo>
+
+<!-- Gazebo plugin for planar move -->
+<gazebo>
+  <plugin name="base_controller" filename="libgazebo_ros_planar_move.so">
+    <commandTopic>cmd_vel</commandTopic>
+    <odometryTopic>odom</odometryTopic>
+    <odometryFrame>odom</odometryFrame>
+    <odometryRate>20.0</odometryRate>
+    <robotBaseFrame>base_footprint</robotBaseFrame>
+  </plugin>
+</gazebo>
+
+<!-- Gazebo plugin for hokuyo UTM-10 -->
+<gazebo reference="laser">
+    <sensor type="ray" name="head_hokuyo_sensor">
+      <pose>0 0 0.10 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>10</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>1081</samples>
+            <resolution>1</resolution>
+            <min_angle>-2.35619445</min_angle>
+            <max_angle>2.35619445</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.50</min>
+          <max>10.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="gazebo_ros_hokuyo_controller" filename="libgazebo_ros_laser.so">
+        <topicName>scan</topicName>
+        <frameName>laser</frameName>
+      </plugin>
+    </sensor>
+ </gazebo>
+
+<!-- Gazebo plugin for Kinect v2 -->
+<gazebo reference="kinect2_ir_optical_frame">
+  <sensor type="depth" name="kinect2_depth_sensor" >
+    <always_on>true</always_on>
+    <update_rate>20.0</update_rate>
+    <camera name="kinect2_depth_sensor">
+      <horizontal_fov>1.221730456</horizontal_fov>
+      <image>
+          <width>512</width>
+          <height>424</height>
+          <format>L8</format>
+      </image>
+      <clip>
+          <near>0.5</near>
+          <far>6.0</far>
+      </clip>
+      <noise>
+          <type>gaussian</type>
+          <mean>0.1</mean>
+          <stddev>0.07</stddev>
+      </noise>
+    </camera>
+    <plugin name="kinect2_depth_control" filename="libgazebo_ros_openni_kinect.so">
+        <cameraName>kinect2/sd</cameraName>
+        <alwaysOn>true</alwaysOn>
+        <updateRate>20.0</updateRate>
+        <imageTopicName>image_ir_rect</imageTopicName>
+        <depthImageTopicName>image_depth_rect</depthImageTopicName>
+        <pointCloudTopicName>points</pointCloudTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+        <frameName>kinect2_ir_optical_frame</frameName>
+        <pointCloudCutoff>0.5</pointCloudCutoff>
+        <pointCloudCutoffMax>6.0</pointCloudCutoffMax>
+        <baseline>0.1</baseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+    </plugin>
+  </sensor>
+</gazebo>
+<gazebo reference="kinect2_rgb_optical_frame">
+    <sensor type="camera" name="kinect2_rgb_sensor">
+        <always_on>true</always_on>
+        <update_rate>20.0</update_rate>
+        <camera name="kinect2_rgb_sensor">
+          <horizontal_fov>1.221730456</horizontal_fov>
+          <image>
+              <width>1920</width>
+              <height>1080</height>
+              <format>R8G8B8</format>
+          </image>
+          <clip>
+              <near>0.2</near>
+              <far>10.0</far>
+          </clip>
+          <noise>
+              <type>gaussian</type>
+              <mean>0.0</mean>
+              <stddev>0.007</stddev>
+          </noise>
+        </camera>
+        <plugin name="kinect2_rgb_controller" filename="libgazebo_ros_camera.so">
+          <alwaysOn>true</alwaysOn>
+          <update_rate>20.0</update_rate>
+          <cameraName>kinect2/hd</cameraName>
+          <imageTopicName>image_color_rect</imageTopicName>
+          <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+          <frameName>kinect2_rgb_optical_frame</frameName>
+          <baseline>0.1</baseline>
+          <distortionK1>0.0</distortionK1>
+          <distortionK2>0.0</distortionK2>
+          <distortionK3>0.0</distortionK3>
+          <distortionT1>0.0</distortionT1>
+          <distortionT2>0.0</distortionT2>
+        </plugin>
+    </sensor>
+</gazebo>
+
+  <!-- ros_control plugin -->
+   <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/wpr1</robotNamespace>
+      <robotParam>wpr1_description</robotParam>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+    </plugin>
+  </gazebo>
+
+</robot>

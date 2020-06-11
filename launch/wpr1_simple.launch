@@ -1,0 +1,35 @@
+<launch>
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find wpr_simulation)/worlds/wpb_simple.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="recording" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <!-- Spawn a robot into Gazebo -->
+  <arg name="model" default="$(find wpr_simulation)/urdf/wpr1.gazebo"/>
+  <param name="wpr1_description" command="$(find xacro)/xacro.py $(arg model)" />
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/urdf/wpr1.gazebo -urdf -model wpr1" />
+
+   <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find wpr_simulation)/config/wpr1_control.yaml" command="load"/>
+
+  <!-- load the controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+	output="screen" ns="/wpr1" args="joint_state_controller
+    base_to_torso_position_controller
+    torso_to_upperarm_position_controller
+    upperarm_to_forearm_position_controller
+    forearm_to_palm_position_controller
+    mani_palm_finger_position_controller"/>
+
+  <!-- convert joint states to TF transforms for rviz, etc -->
+  <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
+  <node name="gazebo_wpr1_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
+    <remap from="/joint_states" to="/wpr1/joint_states" />
+  </node>
+
+</launch>
