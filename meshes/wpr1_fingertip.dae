@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.82.7 commit date:2020-03-12, commit time:05:06, hash:375c7dc4caf4</authoring_tool>
+    </contributor>
+    <created>2020-06-11T17:17:05</created>
+    <modified>2020-06-11T17:17:05</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_cameras>
+    <camera id="Camera-camera" name="Camera">
+      <optics>
+        <technique_common>
+          <perspective>
+            <xfov sid="xfov">39.59775</xfov>
+            <aspect_ratio>1.777778</aspect_ratio>
+            <znear sid="znear">0.1</znear>
+            <zfar sid="zfar">100</zfar>
+          </perspective>
+        </technique_common>
+      </optics>
+      <extra>
+        <technique profile="blender">
+          <shiftx sid="shiftx" type="float">0</shiftx>
+          <shifty sid="shifty" type="float">0</shifty>
+          <dof_distance sid="dof_distance" type="float">10</dof_distance>
+        </technique>
+      </extra>
+    </camera>
+  </library_cameras>
+  <library_lights>
+    <light id="Light-light" name="Light">
+      <technique_common>
+        <point>
+          <color sid="color">1000 1000 1000</color>
+          <constant_attenuation>1</constant_attenuation>
+          <linear_attenuation>0</linear_attenuation>
+          <quadratic_attenuation>0.00111109</quadratic_attenuation>
+        </point>
+      </technique_common>
+      <extra>
+        <technique profile="blender">
+          <type sid="type" type="int">0</type>
+          <flag sid="flag" type="int">0</flag>
+          <mode sid="mode" type="int">1</mode>
+          <gamma sid="blender_gamma" type="float">1</gamma>
+          <red sid="red" type="float">1</red>
+          <green sid="green" type="float">1</green>
+          <blue sid="blue" type="float">1</blue>
+          <shadow_r sid="blender_shadow_r" type="float">0</shadow_r>
+          <shadow_g sid="blender_shadow_g" type="float">0</shadow_g>
+          <shadow_b sid="blender_shadow_b" type="float">0</shadow_b>
+          <energy sid="blender_energy" type="float">1000</energy>
+          <dist sid="blender_dist" type="float">29.99998</dist>
+          <spotsize sid="spotsize" type="float">75</spotsize>
+          <spotblend sid="spotblend" type="float">0.15</spotblend>
+          <att1 sid="att1" type="float">0</att1>
+          <att2 sid="att2" type="float">1</att2>
+          <falloff_type sid="falloff_type" type="int">2</falloff_type>
+          <clipsta sid="clipsta" type="float">0.04999995</clipsta>
+          <clipend sid="clipend" type="float">30.002</clipend>
+          <bias sid="bias" type="float">1</bias>
+          <soft sid="soft" type="float">3</soft>
+          <bufsize sid="bufsize" type="int">2880</bufsize>
+          <samp sid="samp" type="int">3</samp>
+          <buffers sid="buffers" type="int">1</buffers>
+          <area_shape sid="area_shape" type="int">1</area_shape>
+          <area_size sid="area_size" type="float">0.1</area_size>
+          <area_sizey sid="area_sizey" type="float">0.1</area_sizey>
+          <area_sizez sid="area_sizez" type="float">1</area_sizez>
+        </technique>
+      </extra>
+    </light>
+  </library_lights>
+  <library_images/>
+  <library_geometries>
+    <geometry id="Fingertip-mesh" name="Fingertip">
+      <mesh>
+        <source id="Fingertip-mesh-positions">
+          <float_array id="Fingertip-mesh-positions-array" count="138">0.02399998 0 0 0.02699995 0 0 0.02399998 0 0.02499997 0.02699995 0 0.02499997 0.02199995 0.02499997 0 0.02199995 0.001999974 0 0.02199995 0.02499997 0.02499997 0.02199995 0.001999974 0.02499997 0.01699995 0.02999997 0.02499997 0.001999974 0.02999997 0.02499997 0.01699995 0.02999997 0 0.001999974 0.02999997 0 0 0.032 0.02499997 0 0.03799998 0.02499997 0 0.032 0 0 0.03799998 0 0.01699995 0.03999996 0 0.001999974 0.03999996 0 0.01699995 0.03999996 0.02499997 0.001999974 0.03999996 0.02499997 0.02199995 0.04499995 0.02499997 0.02199995 0.06799995 0.02499997 0.02199995 0.04499995 0 0.02199995 0.06799995 0 0.02399998 0.06999999 0.02499997 0.02699995 0.06999999 0.02499997 0.02399998 0.06999999 0 0.02699995 0.06999999 0 0.01854509 0.04024469 0 0.02175527 0.02654504 0 0.02104508 0.0279389 0 0.01993888 0.04095488 0 0.02104508 0.04206103 0 0.01993888 0.02904504 0 0.01854509 0.02975523 0 0.02175527 0.04345488 0 0.02175527 0.04345488 0.02499997 0.02175527 0.02654504 0.02499997 0.01993888 0.02904504 0.02499997 0.02104508 0.0279389 0.02499997 0.01854509 0.04024469 0.02499997 0.01993888 0.04095488 0.02499997 0.02104508 0.04206103 0.02499997 0.01854509 0.02975523 0.02499997 0.02399998 0 0.02499997 0.02399998 0 0</float_array>
+          <technique_common>
+            <accessor source="#Fingertip-mesh-positions-array" count="46" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Fingertip-mesh-normals">
+          <float_array id="Fingertip-mesh-normals-array" count="111">0 -1 0 -1 0 0 0 1 0 1 0 0 0 0 -1 0 0 1 -2.32984e-6 0 1 -2.53077e-6 0 1 7.24192e-5 0 1 -5.36637e-6 0 1 -1.38459e-6 0 1 -4.25492e-6 0 1 2.42532e-6 0 1 -1.81899e-6 0 1 2.18857e-6 0 1 -0.7071066 -0.707107 0 -0.707106 0.7071076 0 -0.7071072 -0.7071065 0 -0.7071068 0.7071068 0 -0.9876887 0.1564323 0 -0.9876883 0.1564353 0 -0.8910061 0.4539915 0 -0.7071089 0.7071048 0 -0.7071074 0.7071062 0 -0.4539909 0.8910064 0 -0.4539891 0.8910073 0 -0.1564351 0.9876883 0 -0.1564348 0.9876884 0 -0.1564337 -0.9876885 0 -0.1564339 -0.9876884 0 -0.45399 -0.8910068 0 -0.4539918 -0.8910059 0 -0.7071062 -0.7071074 0 -0.7071077 -0.7071059 0 -0.8910064 -0.4539909 0 -0.9876882 -0.1564354 0 -0.9876887 -0.1564325 0</float_array>
+          <technique_common>
+            <accessor source="#Fingertip-mesh-normals-array" count="37" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Fingertip-mesh-vertices">
+          <input semantic="POSITION" source="#Fingertip-mesh-positions"/>
+        </vertices>
+        <triangles count="84">
+          <input semantic="VERTEX" source="#Fingertip-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Fingertip-mesh-normals" offset="1"/>
+          <p>0 0 1 0 2 0 2 0 1 0 3 0 4 1 5 1 6 1 6 1 5 1 7 1 8 0 9 0 10 0 10 0 9 0 11 0 12 1 13 1 14 1 14 1 13 1 15 1 16 2 17 2 18 2 18 2 17 2 19 2 20 1 21 1 22 1 22 1 21 1 23 1 24 2 25 2 26 2 26 2 25 2 27 2 3 3 1 3 25 3 25 3 1 3 27 3 22 4 23 4 26 4 28 4 29 4 30 4 31 4 32 4 1 4 30 4 33 4 28 4 28 4 33 4 34 4 28 4 34 4 10 4 1 4 0 4 5 4 32 4 35 4 1 4 1 4 35 4 22 4 1 4 22 4 27 4 27 4 22 4 26 4 14 4 15 4 11 4 11 4 15 4 17 4 11 4 17 4 10 4 10 4 17 4 16 4 10 4 16 4 28 4 5 4 4 4 1 4 1 4 4 4 29 4 1 4 29 4 31 4 31 4 29 4 28 4 24 5 21 5 25 5 25 5 21 5 20 5 25 5 20 5 3 5 3 6 20 6 36 6 7 7 2 7 6 7 6 5 2 5 3 5 6 8 3 8 37 8 38 9 39 9 40 9 40 10 39 10 37 10 40 5 37 5 41 5 41 11 37 11 3 11 41 5 3 5 42 5 42 5 3 5 36 5 13 12 12 12 19 12 19 13 12 13 9 13 19 5 9 5 18 5 18 5 9 5 8 5 18 5 8 5 40 5 40 14 8 14 43 14 40 5 43 5 38 5 44 15 7 15 45 15 45 15 7 15 5 15 21 16 24 16 23 16 23 16 24 16 26 16 9 17 12 17 11 17 11 17 12 17 14 17 13 18 19 18 15 18 15 18 19 18 17 18 20 19 22 19 36 19 36 20 22 20 35 20 36 21 35 21 42 21 42 21 35 21 32 21 42 22 32 22 41 22 41 23 32 23 31 23 41 24 31 24 40 24 40 25 31 25 28 25 40 26 28 26 18 26 18 27 28 27 16 27 8 28 10 28 43 28 43 29 10 29 34 29 43 30 34 30 38 30 38 31 34 31 33 31 38 32 33 32 39 32 39 33 33 33 30 33 39 34 30 34 37 34 37 34 30 34 29 34 37 35 29 35 6 35 6 36 29 36 4 36</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Fingertip" name="Fingertip" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 -0.035 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#Fingertip-mesh" name="Fingertip"/>
+      </node>
+      <node id="Camera" name="Camera" type="NODE">
+        <matrix sid="transform">0.6859207 -0.3240135 0.6515582 7.358891 0.7276763 0.3054208 -0.6141704 -6.925791 0 0.8953956 0.4452714 4.958309 0 0 0 1</matrix>
+        <instance_camera url="#Camera-camera"/>
+      </node>
+      <node id="Light" name="Light" type="NODE">
+        <matrix sid="transform">-0.2908646 -0.7711008 0.5663932 4.076245 0.9551712 -0.1998834 0.2183912 1.005454 -0.05518906 0.6045247 0.7946723 5.903862 0 0 0 1</matrix>
+        <instance_light url="#Light-light"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

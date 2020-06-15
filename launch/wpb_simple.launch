@@ -10,10 +10,10 @@
   </include>
 
   <!-- Spawn the objects into Gazebo -->
-  <node name="bookshelft" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/urdf/bookshelft.gazebo -x 3.0 -y 0.2 -z 0 -Y 3.14159 -urdf -model bookshelft" />
-  <node name="bottle" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/urdf/bottle.gazebo -x 2.8 -y 0 -z 0.6 -Y 0 -urdf -model bottle" />
+  <node name="bookshelft" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/bookshelft.model -x 3.0 -y 0.2 -z 0 -Y 3.14159 -urdf -model bookshelft" />
+  <node name="bottle" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/bottle.model -x 2.8 -y 0 -z 0.6 -Y 0 -urdf -model bottle" />
 
   <!-- Spawn a robot into Gazebo -->
-  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/urdf/wpb_home.gazebo -urdf -model wpb_home" />
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/wpb_home.model -urdf -model wpb_home" />
 
 </launch>

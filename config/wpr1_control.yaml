@@ -8,7 +8,7 @@ wpr1:
   base_to_torso_position_controller:
     type: position_controllers/JointPositionController
     joint: base_to_torso
-    pid: {p: 100.0, i: 5.0, d: 50.0, i_clamp_max: 40.0, i_clamp_min: -430.0}
+    pid: {p: 1000.0, i: 150.0, d: 50.0, i_clamp_max: 500.0, i_clamp_min: -500.0}
 
   torso_to_upperarm_position_controller:
     type: position_controllers/JointPositionController
@@ -25,20 +25,36 @@ wpr1:
     joint: forearm_to_palm
     pid: {p: 100.0, i: 0.01, d: 10.0}
 
-  mani_palm_finger_position_controller:
+  palm_left_finger_position_controller:
     type: position_controllers/JointPositionController
-    joint: mani_palm_finger
+    joint: palm_left_finger
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  
+  left_finger_tip_position_controller:
+    type: position_controllers/JointPositionController
+    joint: left_finger_tip
+    pid: {p: 10.0, i: 0.01, d: 1.0}
+
+  palm_right_finger_position_controller:
+    type: position_controllers/JointPositionController
+    joint: palm_right_finger
     pid: {p: 100.0, i: 0.01, d: 10.0}
 
+  right_finger_tip_position_controller:
+    type: position_controllers/JointPositionController
+    joint: right_finger_tip
+    pid: {p: 10.0, i: 0.01, d: 1.0}
+
+  
   #PID Gains ---------------------------------------
   gazebo_ros_control:
      pid_gains:
       base_to_torso:
-          p: 100.0
-          i: 30.0
-          d: 30.0
-          i_clamp_max: 40.0
-          i_clamp_min: -430.0
+          p: 1000.0
+          i: 150.0
+          d: 50.0
+          i_clamp_max: 500.0
+          i_clamp_min: -500.0
       torso_to_upperarm:
           p: 100.0
           i: 0.01
@@ -51,7 +67,19 @@ wpr1:
           p: 100.0
           i: 0.01
           d: 10.0
-      mani_palm_finger:
+      palm_left_finger:
           p: 100.0
           i: 0.01
-          d: 10.0
+          d: 7.0
+      left_finger_tip:
+          p: 10.0
+          i: 0.01
+          d: 0.5
+      palm_right_finger:
+          p: 100.0
+          i: 0.01
+          d: 7.0
+      right_finger_tip:
+          p: 10.0
+          i: 0.01
+          d: 0.5

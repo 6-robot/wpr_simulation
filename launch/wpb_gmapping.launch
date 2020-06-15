@@ -11,28 +11,28 @@
   </include>
 
   <!-- Spawn the objects into Gazebo -->
-  <node name="bed" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/urdf/bed.gazebo -x 5.0 -y -3.9 -z 0 -Y 3.14159 -urdf -model bed" />
-  <node name="sofa" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/urdf/sofa.gazebo -x -1.0 -y -3.9 -z 0 -Y 1.57 -urdf -model sofa" />
-  <node name="tea_table" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/urdf/tea_table.gazebo -x -2.1 -y -2.2 -z 0 -Y 1.57 -urdf -model tea_table" />
-  <node name="bookshelft" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/urdf/bookshelft.gazebo -x 2.0 -y -0.55 -z 0 -Y -1.57 -urdf -model bookshelft" />
+  <node name="bed" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/bed.model -x 5.0 -y -3.9 -z 0 -Y 3.14159 -urdf -model bed" />
+  <node name="sofa" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/sofa.model -x -1.0 -y -3.9 -z 0 -Y 1.57 -urdf -model sofa" />
+  <node name="tea_table" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/tea_table.model -x -2.1 -y -2.2 -z 0 -Y 1.57 -urdf -model tea_table" />
+  <node name="bookshelft" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/bookshelft.model -x 2.0 -y -0.55 -z 0 -Y -1.57 -urdf -model bookshelft" />
 
-  <node name="kitchen_table" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/urdf/table.gazebo -x -3.5 -y 3.7 -z 0 -Y 1.57 -urdf -model kitchen_table" /> 
+  <node name="kitchen_table" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/table.model -x -3.5 -y 3.7 -z 0 -Y 1.57 -urdf -model kitchen_table" /> 
 
-  <node name="cupboard_0" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/urdf/cupboard.gazebo -x -2.0 -y 0.7 -z 0 -Y 1.57 -urdf -model cupboard_0" />
-  <node name="cupboard_1" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/urdf/cupboard.gazebo -x -1.3 -y 3.7 -z 0 -Y -1.57 -urdf -model cupboard_1" /> 
+  <node name="cupboard_0" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/cupboard.model -x -2.0 -y 0.7 -z 0 -Y 1.57 -urdf -model cupboard_0" />
+  <node name="cupboard_1" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/cupboard.model -x -1.3 -y 3.7 -z 0 -Y -1.57 -urdf -model cupboard_1" /> 
 
-  <node name="dinning_table_0" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/urdf/table.gazebo -x 1.5 -y 1.5 -z 0 -Y 1.57 -urdf -model dinning_table_0" />
-  <node name="dinning_table_1" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/urdf/table.gazebo -x 1.5 -y 2.0 -z 0 -Y 1.57 -urdf -model dinning_table_1" />
-  <node name="dinning_table_2" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/urdf/table.gazebo -x 2.7 -y 1.5 -z 0 -Y 1.57 -urdf -model dinning_table_2" />
-  <node name="dinning_table_3" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/urdf/table.gazebo -x 2.7 -y 2.0 -z 0 -Y 1.57 -urdf -model dinning_table_3" />
+  <node name="dinning_table_0" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/table.model -x 1.5 -y 1.5 -z 0 -Y 1.57 -urdf -model dinning_table_0" />
+  <node name="dinning_table_1" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/table.model -x 1.5 -y 2.0 -z 0 -Y 1.57 -urdf -model dinning_table_1" />
+  <node name="dinning_table_2" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/table.model -x 2.7 -y 1.5 -z 0 -Y 1.57 -urdf -model dinning_table_2" />
+  <node name="dinning_table_3" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/table.model -x 2.7 -y 2.0 -z 0 -Y 1.57 -urdf -model dinning_table_3" />
 
-  <node name="chair_0" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/urdf/chair.gazebo -x 1.5 -y 1.2 -z 0 -Y 1.57 -urdf -model chair_0" />
-  <node name="chair_1" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/urdf/chair.gazebo -x 1.5 -y 2.3 -z 0 -Y -1.57 -urdf -model chair_1" />
-  <node name="chair_2" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/urdf/chair.gazebo -x 2.7 -y 1.2 -z 0 -Y 1.57 -urdf -model chair_2" />
-  <node name="chair_3" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/urdf/chair.gazebo -x 2.7 -y 2.3 -z 0 -Y -1.57 -urdf -model chair_3" />
+  <node name="chair_0" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/chair.model -x 1.5 -y 1.2 -z 0 -Y 1.57 -urdf -model chair_0" />
+  <node name="chair_1" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/chair.model -x 1.5 -y 2.3 -z 0 -Y -1.57 -urdf -model chair_1" />
+  <node name="chair_2" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/chair.model -x 2.7 -y 1.2 -z 0 -Y 1.57 -urdf -model chair_2" />
+  <node name="chair_3" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/chair.model -x 2.7 -y 2.3 -z 0 -Y -1.57 -urdf -model chair_3" />
 
   <!-- Spawn a robot into Gazebo -->
-  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/urdf/wpb_home.gazebo -urdf -x -6.0 -y -0.5 -model wpb_home" />
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/wpb_home.model -urdf -x -6.0 -y -0.5 -model wpb_home" />
 
   <!-- Gmapping -->
   <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping">
