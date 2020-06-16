@@ -617,6 +617,7 @@
       <robotNamespace>/wpr1</robotNamespace>
       <robotParam>wpr1_description</robotParam>
       <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+      <legacyModeNS>true</legacyModeNS>
     </plugin>
   </gazebo>
 
