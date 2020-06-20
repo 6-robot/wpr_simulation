@@ -17,11 +17,15 @@ git clone https://github.com/6-robot/wpb_home.git
 3. 安装依赖项:  
 ROS Kinetic/Ubuntu 16.04
 ```
+cd ~/catkin_ws/src/wpr_simulation/scripts
+./install_for_kinetic.sh
 cd ~/catkin_ws/src/wpb_home/wpb_home_bringup/scripts
 ./install_for_kinetic.sh
 ```
   ROS Melodic/Ubuntu 18.04
 ```
+cd ~/catkin_ws/src/wpr_simulation/scripts
+./install_for_melodic.sh
 cd ~/catkin_ws/src/wpb_home/wpb_home_bringup/scripts
 ./install_for_melodic.sh
 ```
@@ -51,3 +55,10 @@ Navigation导航:
 roslaunch wpr_simulation wpb_navigation.launch
 ```
 ![wpb_navigation pic](https://user-images.githubusercontent.com/17635413/82132412-093c4700-9812-11ea-959a-f40f1be40cab.png)
+
+物品抓取:
+```
+roslaunch wpr_simulation wpb_home_table.launch
+rosrun wpb_home_tutorials wpb_home_grab_client
+```
+![wpb_home_table pic](./media/wpb_home_table.png)

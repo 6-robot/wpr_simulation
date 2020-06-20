@@ -8,8 +8,8 @@ project(wpr_simulation)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-# controller_manager
-# joint_state_controller
+  controller_manager
+  joint_state_controller
   robot_state_publisher
   roscpp
   rospy
@@ -17,6 +17,7 @@ find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
   move_base_msgs 
   actionlib
+  tf
 )
 
 ## System dependencies are found with CMake's conventions
@@ -210,6 +211,14 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+
+add_executable(wpb_home_sim
+  src/wpb_home_sim.cpp
+)
+add_dependencies(wpb_home_sim ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(wpb_home_sim
+  ${catkin_LIBRARIES}
+)
 
 add_executable(demo_vel_ctrl
   src/demo_vel_ctrl.cpp

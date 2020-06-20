@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="2">
   <name>wpr_simulation</name>
-  <version>0.0.2</version>
+  <version>0.0.3</version>
   <description>The wpr_simulation package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
@@ -49,8 +49,8 @@
   <!-- Use doc_depend for packages you need only for building documentation: -->
   <!--   <doc_depend>doxygen</doc_depend> -->
   <buildtool_depend>catkin</buildtool_depend>
-  <!--   <build_depend>controller_manager</build_depend> -->
-  <!--   <build_depend>joint_state_controller</build_depend> -->
+  <build_depend>controller_manager</build_depend>
+  <build_depend>joint_state_controller</build_depend>
   <build_depend>robot_state_publisher</build_depend>
   <build_depend>roscpp</build_depend>
   <build_depend>rospy</build_depend>
@@ -58,8 +58,9 @@
   <build_depend>geometry_msgs</build_depend>
   <build_depend>move_base_msgs</build_depend>
   <build_depend>actionlib</build_depend>
-  <!--   <build_export_depend>controller_manager</build_export_depend> -->
-  <!--   <build_export_depend>joint_state_controller</build_export_depend> -->
+  <build_depend>tf</build_depend>
+  <build_export_depend>controller_manager</build_export_depend>
+  <build_export_depend>joint_state_controller</build_export_depend>
   <build_export_depend>robot_state_publisher</build_export_depend>
   <build_export_depend>roscpp</build_export_depend>
   <build_export_depend>rospy</build_export_depend>
@@ -67,8 +68,9 @@
   <build_export_depend>geometry_msgs</build_export_depend>
   <build_export_depend>move_base_msgs</build_export_depend>
   <build_export_depend>actionlib</build_export_depend>
-  <!--   <exec_depend>controller_manager</exec_depend> -->
-  <!--   <exec_depend>joint_state_controller</exec_depend> -->
+  <build_export_depend>tf</build_export_depend>
+  <exec_depend>controller_manager</exec_depend>
+  <exec_depend>joint_state_controller</exec_depend>
   <exec_depend>robot_state_publisher</exec_depend>
   <exec_depend>roscpp</exec_depend>
   <exec_depend>rospy</exec_depend>
@@ -76,6 +78,7 @@
   <exec_depend>geometry_msgs</exec_depend>
   <exec_depend>move_base_msgs</exec_depend>
   <exec_depend>actionlib</exec_depend>
+  <exec_depend>tf</exec_depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>

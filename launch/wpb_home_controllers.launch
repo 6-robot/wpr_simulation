@@ -1,0 +1,25 @@
+<launch>
+
+   <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find wpr_simulation)/config/wpb_home_control.yaml" command="load"/>
+
+  <!-- load the controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"  output="screen" ns="/wpb_home"  args=
+  "joint_state_controller
+    mani_base_position_controller
+    elbow_forearm_position_controller
+    palm_left_finger_position_controller
+    left_finger_tip_position_controller
+    palm_right_finger_position_controller
+    right_finger_tip_position_controller"/>
+
+  <!-- convert joint states to TF transforms for rviz, etc -->
+  <param name="wpb_home_description" textfile="$(find wpr_simulation)/models/wpb_home_mani.model" />
+  <node name="gazebo_wpb_home_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
+    <remap from="robot_description" to="wpb_home_description" />
+    <remap from="/joint_states" to="/wpb_home/joint_states" />
+  </node>
+
+  <node name="wpb_home_sim" pkg="wpr_simulation" type="wpb_home_sim" output="screen"/>
+
+</launch>

@@ -1,0 +1,34 @@
+<launch>
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find wpr_simulation)/worlds/simple.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="recording" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <!-- Spawn the objects into Gazebo -->
+  <node name="table" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/table.model -x 1.2 -y 0.0 -z 0 -Y 0 -urdf -model table" />
+  <node name="bottle" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/bottle.model -x 1.1 -y 0.3 -z 1.0 -Y 0 -urdf -model bottle" />
+
+  <!-- Spawn a robot into Gazebo -->
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/wpb_home_mani.model -urdf -model wpb_home_mani" />
+
+  <!-- load the controllers of WPB_HOME -->
+  <include file="$(find wpr_simulation)/launch/wpb_home_controllers.launch"/>
+
+  <node pkg="wpb_home_behaviors" type="wpb_home_grab_server" name="wpb_home_grab_server" />
+
+  <!-- rviz -->
+  <arg name="model" default="$(find wpb_home_bringup)/urdf/wpb_home_mani.urdf"/>
+  <arg name="gui" default="false" />
+  <arg name="rvizconfig" default="$(find wpr_simulation)/rviz/grab.rviz" />
+
+  <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
+  <param name="use_gui" value="$(arg gui)"/>
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+
+</launch>

@@ -1,0 +1,643 @@
+<?xml version="1.0"?>
+<robot name="wpb_home">
+
+<link name="base_footprint">
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <geometry>
+      <box size="0.05 0.05 0.001" />
+    </geometry>
+  </visual>
+</link>
+
+<joint name="base_joint" type="fixed">
+  <origin xyz="0 0 0" rpy="0 0 0" />
+  <parent link="base_footprint"/>
+  <child link="base_link" />
+</joint>
+
+<!-- base -->
+<link name="base_link">
+  <visual>
+   <geometry>
+    <box size="0.01 0.01 0.001" />
+   </geometry>
+   <origin rpy = "0 0 0" xyz = "0 0 0"/>
+  </visual>
+</link>
+
+<!-- body -->
+<link name = "body_link">
+  <visual>
+    <geometry>
+      <mesh filename="package://wpr_simulation/meshes/wpb_home/wpb_home_mani.dae" scale="1 1 1"/>
+    </geometry>
+    <origin rpy = "1.57 0 1.57" xyz = "-.225 -0.225 0"/>
+  </visual>
+  <collision>
+    <origin xyz="0.001 0 .065" rpy="0 0 0" />
+    <geometry>
+      <cylinder length="0.13" radius="0.226"/>
+    </geometry>
+  </collision>
+  <inertial>
+    <!-- <mass value="25"/>
+    <inertia ixx="0.536833333" ixy="0.0" ixz="0.0" iyy="0.536833333" iyz="0.0" izz="0.611"/> -->
+    <mass value="250"/>
+    <inertia ixx="5.36833333" ixy="0.0" ixz="0.0" iyy="5.36833333" iyz="0.0" izz="6.11"/>
+  </inertial>
+</link>
+<joint name = "base_to_body" type = "fixed">
+  <parent link = "base_link"/>
+  <child link = "body_link"/>
+  <origin rpy="0 0 0" xyz="0 0 0"/> <!--pos-->
+</joint>
+<!-- top of base -->
+<link name = "base_top_link">
+  <collision>
+    <origin xyz="0 0 0.01" rpy="0 0 0" />
+    <geometry>
+      <box size="0.33 0.31 0.03"/>
+    </geometry>
+  </collision>
+  <inertial>
+    <mass value="0.01"/>
+    <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+  </inertial>
+</link>
+<joint name = "body_to_top" type = "fixed">
+  <parent link = "body_link"/>
+  <child link = "base_top_link"/>
+  <origin rpy="0 0 0" xyz="0.01 0 0.2"/> <!--pos-->
+</joint>
+<!-- back -->
+<link name = "body_back_link">
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <geometry>
+      <box size="0.03 0.23 1.05"/>
+    </geometry>
+  </collision>
+  <inertial>
+    <mass value="0.01"/>
+    <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+  </inertial>
+</link>
+<joint name = "body_to_back" type = "fixed">
+  <parent link = "base_top_link"/>
+  <child link = "body_back_link"/>
+  <origin rpy="0 0.31 0" xyz="-0.038 0 0.5"/> <!--pos-->
+</joint>
+<!-- head -->
+<link name = "head_link">
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <geometry>
+      <box size="0.07 0.28  0.06"/>
+    </geometry>
+  </collision>
+  <inertial>
+    <mass value="0.01"/>
+    <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+  </inertial>
+</link>
+<joint name = "body_to_head" type = "fixed">
+  <parent link = "base_top_link"/>
+  <child link = "head_link"/>
+  <origin rpy="0 0.27 0" xyz="0.155 0 1.17"/> <!--pos-->
+</joint>
+<!-- front -->
+<link name = "front_link">
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <geometry>
+     <box size="0.05 0.05  0.77"/>
+    </geometry>
+  </collision>
+  <inertial>
+    <mass value="5.7"/>
+    <inertia ixx="0.441687775" ixy="0.0" ixz="0.0" iyy="0.0017366" iyz="0.0" izz="0.441070275"/>
+  </inertial>
+</link>
+<joint name = "body_to_front" type = "fixed">
+  <parent link = "base_top_link"/>
+  <child link = "front_link"/>
+  <origin rpy="0 0 0" xyz="0.1 0 0.41"/> <!--pos-->
+</joint>
+<!--front_holder -->
+<link name = "front_holder_link">
+  <collision>
+    <origin xyz="0 0 0" rpy="1.57 0 0" />
+    <geometry>
+     <cylinder length="0.1" radius="0.01"/>
+    </geometry>
+  </collision>
+  <inertial>
+    <mass value="0.01"/>
+    <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+  </inertial>
+</link>
+<joint name = "body_to_front_holder" type = "fixed">
+  <parent link = "base_top_link"/>
+  <child link = "front_holder_link"/>
+  <origin rpy="0 0 0" xyz="0.215 0 0.3"/> <!--pos-->
+</joint>
+
+<!-- manipulator -->
+<link name = "mani_lift">
+  <visual>
+   <geometry>
+    <box size=".03 .04 .06"/>
+   </geometry>
+   <origin rpy = "0 0 0" xyz = "0 0 -0.06"/>
+  </visual>
+  <inertial>
+      <mass value="1"/>
+      <inertia ixx="0.000375" ixy="0.0" ixz="0.0" iyy="0.000208333" iyz="0.0" izz="0.000433333"/>
+  </inertial>
+</link>
+<joint name="mani_base" type="prismatic">
+    <parent link="base_link"/>
+    <child link="mani_lift"/>
+    <limit effort="1000.0" lower="0" upper="0.7" velocity="0.5"/>
+    <origin xyz="0.1 0 0.4" rpy="0 -1.5707963 0"/>
+</joint>
+  <transmission name="mani_base_transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="mani_base">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>  
+    <actuator name="mani_base_motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+<link name = "mani_elbow">
+  <inertial>
+      <!-- <mass value="0.1"/>
+      <inertia ixx="0.0000375" ixy="0.0" ixz="0.0" iyy="0.0000208333" iyz="0.0" izz="0.0000433333"/> -->
+      <mass value="0.00001"/>
+      <inertia ixx="0.0000001" ixy="0.0" ixz="0.0000001" iyy="0.0" iyz="0.0" izz="0.0000001"/>
+  </inertial>
+</link>
+<joint name="lift_elbow" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 -0.08"  /> 
+    <parent link="mani_lift" />
+    <child link="mani_elbow" />
+</joint>
+
+<link name = "mani_forearm">
+  <visual>
+    <geometry>
+      <mesh filename="package://wpr_simulation/meshes/wpb_home/forearm.dae" scale=" 1 1 1 "/>
+    </geometry>
+    <origin rpy = "-1.5707963 3.1415926 0" xyz = "0.365 -0.037 -0.0355"/>
+  </visual>
+  <collision>
+      <origin xyz="0.19 0 -0.01" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.35 0.05  0.03"/>
+    </geometry>
+  </collision>
+   <inertial>
+      <!-- <mass value="1.95"/>
+      <inertia ixx="0.121862813" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.121862813"/> -->
+      <mass value="0.00001"/>
+      <inertia ixx="0.0000001" ixy="0.0" ixz="0.0000001" iyy="0.0" iyz="0.0" izz="0.0000001"/>
+  </inertial>
+</link>
+<joint name="elbow_forearm" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="0" upper="1.57" velocity="0.5"/>
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="mani_elbow" />
+    <child link="mani_forearm" />
+</joint>
+  <transmission name="elbow_forearm_transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="elbow_forearm">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>  
+    <actuator name="elbow_forearm_motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+<!-- left finger -->
+  <link name = "mani_left_finger">
+    <visual>
+        <geometry>
+            <box size="0.1 0.01  0.037"/>
+        </geometry>
+        <origin rpy = "0 0 0" xyz = "0.05 0 0"/>
+    </visual>
+    <collision>
+      <origin xyz="0.076 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.02 0.01  0.037"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.00001"/>
+      <inertia ixx="0.0000001" ixy="0.0" ixz="0.0000001" iyy="0.0" iyz="0.0" izz="0.0000001"/>
+    </inertial>
+  </link>
+  <gazebo reference="mani_left_finger">
+   <material>Gazebo/Grey</material>
+  </gazebo>
+  <joint name = "palm_left_finger" type = "revolute">
+      <parent link = "mani_forearm"/>
+      <child link = "mani_left_finger"/>
+      <origin xyz = "0.33 0.0125 -0.006"/>
+      <axis xyz = "0 0 1"/>
+      <limit effort = "1000.0" lower="-0.07" upper="1.57" velocity="0.5"/>
+  </joint>
+  <transmission name="palm_left_finger_transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="palm_left_finger">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>  
+    <actuator name="palm_left_finger_motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <!-- left fingertip -->
+   <link name = "mani_left_finger_tip">
+    <visual>
+        <geometry>
+            <box size="0.07 0.006  0.025"/>
+        </geometry>
+        <origin rpy = "0 0 0" xyz = "0.035 0 0"/>
+    </visual>
+    <collision>
+      <origin xyz="0.035 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.07 0.006  0.025"/>
+      </geometry>
+    </collision>
+    <collision>
+    <origin xyz="0.071 -0.005 0" rpy="0 0 0" />
+    <geometry>
+      <box size="0.001 0.01  0.025"/>
+    </geometry>
+  </collision>
+    <inertial>
+      <mass value="0.00001"/>
+      <inertia ixx="0.0000001" ixy="0.0" ixz="0.0000001" iyy="0.0" iyz="0.0" izz="0.0000001"/>
+    </inertial>
+  </link>
+  <gazebo reference="mani_left_finger_tip">
+   <material>Gazebo/Grey</material>
+  </gazebo>
+  <joint name = "left_finger_tip" type = "revolute">
+      <parent link = "mani_left_finger"/>
+      <child link = "mani_left_finger_tip"/>
+      <origin xyz = "0.1 0 0"/>
+      <axis xyz = "0 0 1"/>
+      <limit effort = "1000.0" lower="-1.57" upper="1.57"  velocity="0.5"/>
+      <mimic joint = "palm_left_finger" multiplier = "-1" offset = "0"/>
+  </joint>
+  <transmission name="left_finger_tip_transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="left_finger_tip">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>  
+    <actuator name="left_finger_tip">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <!-- right finger -->
+  <link name = "mani_right_finger">
+    <visual>
+        <geometry>
+            <box size="0.1 0.01  0.037"/>
+        </geometry>
+        <origin rpy = "0 0 0" xyz = "0.05 0 0"/>
+    </visual>
+    <collision>
+      <origin xyz="0.076 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.02 0.01  0.037"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.00001"/>
+      <inertia ixx="0.0000001" ixy="0.0" ixz="0.0000001" iyy="0.0" iyz="0.0" izz="0.0000001"/>
+    </inertial>
+  </link>
+  <gazebo reference="mani_right_finger">
+   <material>Gazebo/Grey</material>
+  </gazebo>
+  <joint name = "palm_right_finger" type = "revolute">
+      <parent link = "mani_forearm"/>
+      <child link = "mani_right_finger"/>
+      <origin xyz = "0.33 -0.0125 -0.006"/>
+      <axis xyz = "0 0 1"/>
+      <limit effort = "1000.0" lower="-1.57" upper="1.57" velocity="0.5"/>
+      <mimic joint = "palm_left_finger" multiplier = "-1" offset = "0"/>
+  </joint>
+  <transmission name="palm_right_finger_transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="palm_right_finger">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>  
+    <actuator name="palm_right_finger_motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <!-- right fingertip -->
+   <link name = "mani_right_finger_tip">
+     <visual>
+        <geometry>
+            <box size="0.07 0.006  0.025"/>
+        </geometry>
+        <origin rpy = "0 0 0" xyz = "0.035 0 0"/>
+    </visual>
+    <collision>
+      <origin xyz="0.035 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.07 0.006  0.025"/>
+      </geometry>
+    </collision>
+    <collision>
+    <origin xyz="0.071 0.005 0" rpy="0 0 0" />
+    <geometry>
+      <box size="0.001 0.01  0.025"/>
+    </geometry>
+  </collision>
+    <inertial>
+      <mass value="0.00001"/>
+      <inertia ixx="0.0000001" ixy="0.0" ixz="0.0000001" iyy="0.0" iyz="0.0" izz="0.0000001"/>
+    </inertial>
+  </link>
+  <gazebo reference="mani_right_finger_tip">
+   <material>Gazebo/Grey</material>
+  </gazebo>
+  <joint name = "right_finger_tip" type = "revolute">
+      <parent link = "mani_right_finger"/>
+      <child link = "mani_right_finger_tip"/>
+       <origin xyz = "0.1 0 0"/>
+      <axis xyz = "0 0 1"/>
+      <limit effort = "1000.0" lower="-1.57" upper="1.57"  velocity="0.5"/>
+      <mimic joint = "palm_left_finger" multiplier = "1" offset = "0"/>
+  </joint>
+  <transmission name="right_finger_tip_transmission">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="right_finger_tip">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>  
+    <actuator name="right_finger_tip_motor">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+<!-- Lidar -->
+<link name = "laser">
+  <visual>
+   <geometry>
+      <cylinder length="0.001" radius="0.001"/>
+   </geometry>
+   <origin rpy = "0 0 0" xyz = "0 0 0"/>
+  </visual>
+</link>
+<joint name="laser_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0.15"  /> <!--pos-->
+    <parent link="base_link" />
+    <child link="laser" />
+</joint>
+
+<!-- Kinect -->
+<link name = "kinect2_dock">
+  <visual>
+   <geometry>
+    <!-- <box size=".01 .25 .07"/>-->
+    <box size="0.001 0.001 0.001"/>
+   </geometry>
+   <origin rpy = "0 0 0" xyz = "0 0 0"/>
+  </visual>
+</link>
+<joint name="kinect_height" type="fixed">
+  <parent link="base_link"/>
+  <child link="kinect2_dock"/>
+  <origin xyz="0.145 -0.013 1.37" rpy="0 0 0"/> 
+</joint>
+
+<link name = "kinect2_head_frame">
+  <visual>
+   <geometry>
+    <box size="0.001 0.001 0.001"/>
+   </geometry>
+   <origin xyz = "0 0 0" rpy = "0 0 0"/>
+  </visual>
+</link>
+<!--kinect_pitch -->
+<joint name="kinect_pitch" type="fixed">
+  <origin xyz="0 0 0" rpy="0 0.5 0" /> 
+  <parent link="kinect2_dock" />
+  <child link="kinect2_head_frame" />
+</joint>
+
+<link name = "kinect2_front_frame">
+  <visual>
+   <geometry>
+    <box size="0.001 0.001 0.001"/>
+   </geometry>
+   <origin xyz = "0 0 0" rpy = "0 0 0"/>
+  </visual>
+</link>
+<joint name="kinect_head" type="fixed">
+  <origin xyz="0 0 0" rpy=" 0 1.57 0" /> 
+  <parent link="kinect2_head_frame" />
+  <child link="kinect2_front_frame" />
+</joint>
+<link name = "kinect2_ir_optical_frame">
+  <visual>
+   <geometry>
+    <!-- <box size=".25 .04 .07"/>-->
+    <box size="0.001 0.001 0.001"/>
+   </geometry>
+   <origin xyz = "0 0 0" rpy = "0 0 0"/>
+  </visual>
+</link>
+<joint name="kinect_ir_trans" type="fixed">
+  <origin xyz="0 0 0" rpy="0 0 -1.57" /> 
+  <parent link="kinect2_front_frame" />
+  <child link="kinect2_ir_optical_frame" />
+</joint>
+
+<link name = "kinect2_camera_frame">
+  <visual>
+   <geometry>
+    <box size="0.001 0.001 0.001"/>
+   </geometry>
+   <origin rpy = "0 0 0" xyz = "0 0 0" />
+  </visual>
+</link>
+<joint name="kinect_camra_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="3.1415926 0 -1.5707963" />
+    <parent link="kinect2_ir_optical_frame" />
+    <child link="kinect2_camera_frame" />
+</joint>
+
+<link name = "kinect2_rgb_optical_frame">
+  <visual>
+   <geometry>
+    <box size="0.001 0.001 0.001"/>
+   </geometry>
+   <origin rpy = "0 0 0" xyz = "0 0 0" />
+  </visual>
+</link>
+<joint name="kinect_hd_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 1.5707963 0" />
+    <parent link="kinect2_camera_frame" />
+    <child link="kinect2_rgb_optical_frame" />
+</joint>
+
+<gazebo>
+        <self_collide>1</self_collide>
+ </gazebo>
+
+<!-- Gazebo plugin for planar move -->
+<gazebo>
+  <plugin name="base_controller" filename="libgazebo_ros_planar_move.so">
+    <commandTopic>cmd_vel</commandTopic>
+    <odometryTopic>odom</odometryTopic>
+    <odometryFrame>odom</odometryFrame>
+    <odometryRate>20.0</odometryRate>
+    <robotBaseFrame>base_footprint</robotBaseFrame>
+  </plugin>
+</gazebo>
+
+<!-- Gazebo plugin for RpLidar A2 -->
+<gazebo reference="laser">
+  <sensor type="ray" name="rplidar_sensor">
+    <pose>0 0 0.06 0 0 0</pose>
+    <visualize>true</visualize>
+    <update_rate>10</update_rate>
+    <ray>
+      <scan>
+        <horizontal>
+          <samples>360</samples>
+          <resolution>1</resolution>
+          <min_angle>-3.14159265</min_angle>
+          <max_angle>3.14159265</max_angle>
+        </horizontal>
+      </scan>
+      <range>
+        <min>0.24</min>
+        <max>10.0</max>
+        <resolution>0.01</resolution>
+      </range>
+      <noise>
+        <type>gaussian</type>
+        <mean>0.0</mean>
+        <stddev>0.01</stddev>
+      </noise>
+    </ray>
+    <plugin name="rplidar_ros_controller" filename="libgazebo_ros_laser.so">
+      <topicName>scan</topicName>
+      <frameName>laser</frameName>
+    </plugin>
+  </sensor>
+</gazebo>
+
+<!-- Gazebo plugin for Kinect v2 -->
+<gazebo reference="kinect2_head_frame">
+  <sensor type="depth" name="kinect2_depth_sensor" >
+    <always_on>true</always_on>
+    <update_rate>10.0</update_rate>
+    <camera name="kinect2_depth_sensor">
+      <horizontal_fov>1.221730456</horizontal_fov>
+      <image>
+          <width>512</width>
+          <height>424</height>
+          <format>L8</format>
+      </image>
+      <clip>
+          <near>0.5</near>
+          <far>6.0</far>
+      </clip>
+      <noise>
+          <type>gaussian</type>
+          <mean>0.1</mean>
+          <stddev>0.07</stddev>
+      </noise>
+    </camera>
+    <plugin name="kinect2_depth_control" filename="libgazebo_ros_openni_kinect.so">
+        <cameraName>kinect2/sd</cameraName>
+        <alwaysOn>true</alwaysOn>
+        <updateRate>20.0</updateRate>
+        <imageTopicName>image_ir_rect</imageTopicName>
+        <depthImageTopicName>image_depth_rect</depthImageTopicName>
+        <pointCloudTopicName>points</pointCloudTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+        <frameName>kinect2_ir_optical_frame</frameName>
+        <pointCloudCutoff>0.5</pointCloudCutoff>
+        <pointCloudCutoffMax>6.0</pointCloudCutoffMax>
+        <baseline>0.1</baseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+    </plugin>
+  </sensor>
+</gazebo>
+<gazebo reference="kinect2_rgb_optical_frame">
+    <sensor type="camera" name="kinect2_rgb_sensor">
+        <always_on>true</always_on>
+        <update_rate>20.0</update_rate>
+        <camera name="kinect2_rgb_sensor">
+          <horizontal_fov>1.221730456</horizontal_fov>
+          <image>
+              <width>1920</width>
+              <height>1080</height>
+              <format>R8G8B8</format>
+          </image>
+          <clip>
+              <near>0.2</near>
+              <far>10.0</far>
+          </clip>
+          <noise>
+              <type>gaussian</type>
+              <mean>0.0</mean>
+              <stddev>0.007</stddev>
+          </noise>
+        </camera>
+        <plugin name="kinect2_rgb_controller" filename="libgazebo_ros_camera.so">
+          <alwaysOn>true</alwaysOn>
+          <update_rate>20.0</update_rate>
+          <cameraName>kinect2/hd</cameraName>
+          <imageTopicName>image_color_rect</imageTopicName>
+          <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+          <frameName>kinect2_rgb_optical_frame</frameName>
+          <baseline>0.1</baseline>
+          <distortionK1>0.0</distortionK1>
+          <distortionK2>0.0</distortionK2>
+          <distortionK3>0.0</distortionK3>
+          <distortionT1>0.0</distortionT1>
+          <distortionT2>0.0</distortionT2>
+        </plugin>
+    </sensor>
+</gazebo>
+
+  <!-- ros_control plugin -->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/wpb_home</robotNamespace>
+      <robotParam>wpb_home_description</robotParam>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+      <legacyModeNS>true</legacyModeNS>
+    </plugin>
+  </gazebo>
+
+</robot>

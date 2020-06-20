@@ -30,14 +30,14 @@
 <link name = "body_link">
   <visual>
     <geometry>
-      <mesh filename="package://wpr_simulation/meshes/wpb_home.dae" scale="1 1 1"/>
+      <mesh filename="package://wpr_simulation/meshes/wpb_home/wpb_home_std.dae" scale="1 1 1"/>
     </geometry>
     <origin rpy = "1.57 0 1.57" xyz = "-.225 -0.225 0"/>
   </visual>
   <collision>
-    <origin xyz=".013 0 .735" rpy="0 0 0" />
+    <origin xyz="0.001 0 .065" rpy="0 0 0" />
     <geometry>
-      <cylinder length="1.50" radius="0.226"/>
+      <cylinder length="0.13" radius="0.226"/>
     </geometry>
   </collision>
   <inertial>
@@ -49,6 +49,78 @@
   <parent link = "base_link"/>
   <child link = "body_link"/>
   <origin rpy="0 0 0" xyz="0 0 0"/> <!--pos-->
+</joint>
+<!-- top of base -->
+<link name = "base_top_link">
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <geometry>
+      <box size="0.33 0.31 0.01"/>
+    </geometry>
+  </collision>
+  <inertial>
+    <mass value="0.01"/>
+    <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+  </inertial>
+</link>
+<joint name = "body_to_top" type = "fixed">
+  <parent link = "body_link"/>
+  <child link = "base_top_link"/>
+  <origin rpy="0 0 0" xyz="0.01 0 0.2"/> <!--pos-->
+</joint>
+<!-- back -->
+<link name = "body_back_link">
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <geometry>
+      <box size="0.03 0.23 1.05"/>
+    </geometry>
+  </collision>
+  <inertial>
+    <mass value="0.01"/>
+    <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+  </inertial>
+</link>
+<joint name = "body_to_back" type = "fixed">
+  <parent link = "base_top_link"/>
+  <child link = "body_back_link"/>
+  <origin rpy="0 0.31 0" xyz="-0.038 0 0.5"/> <!--pos-->
+</joint>
+<!-- head -->
+<link name = "head_link">
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <geometry>
+      <box size="0.07 0.28  0.06"/>
+    </geometry>
+  </collision>
+  <inertial>
+    <mass value="0.01"/>
+    <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+  </inertial>
+</link>
+<joint name = "body_to_head" type = "fixed">
+  <parent link = "base_top_link"/>
+  <child link = "head_link"/>
+  <origin rpy="0 0.27 0" xyz="0.155 0 1.17"/> <!--pos-->
+</joint>
+<!-- front -->
+<link name = "front_link">
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <geometry>
+     <cylinder length="1.1" radius="0.01"/>
+    </geometry>
+  </collision>
+  <inertial>
+    <mass value="0.01"/>
+    <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+  </inertial>
+</link>
+<joint name = "body_to_front" type = "fixed">
+  <parent link = "base_top_link"/>
+  <child link = "front_link"/>
+  <origin rpy="0 0 0" xyz="0.15 0 0.55"/> <!--pos-->
 </joint>
 
 <!-- Lidar -->
@@ -79,9 +151,37 @@
 <joint name="kinect_height" type="fixed">
   <parent link="base_link"/>
   <child link="kinect2_dock"/>
-  <origin xyz="0.145 -0.013 1.37" rpy="0 0 0"/> <!--kinect_height -->
+  <origin xyz="0.145 -0.013 1.37" rpy="0 0 0"/> 
 </joint>
 
+<link name = "kinect2_head_frame">
+  <visual>
+   <geometry>
+    <box size="0.001 0.001 0.001"/>
+   </geometry>
+   <origin xyz = "0 0 0" rpy = "0 0 0"/>
+  </visual>
+</link>
+<!--kinect_pitch -->
+<joint name="kinect_pitch" type="fixed">
+  <origin xyz="0 0 0" rpy="0 0.5 0" /> 
+  <parent link="kinect2_dock" />
+  <child link="kinect2_head_frame" />
+</joint>
+
+<link name = "kinect2_front_frame">
+  <visual>
+   <geometry>
+    <box size="0.001 0.001 0.001"/>
+   </geometry>
+   <origin xyz = "0 0 0" rpy = "0 0 0"/>
+  </visual>
+</link>
+<joint name="kinect_head" type="fixed">
+  <origin xyz="0 0 0" rpy=" 0 1.57 0" /> 
+  <parent link="kinect2_head_frame" />
+  <child link="kinect2_front_frame" />
+</joint>
 <link name = "kinect2_ir_optical_frame">
   <visual>
    <geometry>
@@ -91,10 +191,24 @@
    <origin xyz = "0 0 0" rpy = "0 0 0"/>
   </visual>
 </link>
-<joint name="kinect_pitch" type="fixed">
-  <origin xyz="0 0 0" rpy="0.0 0.5 0" /> <!--kinect_pitch -->
-  <parent link="kinect2_dock" />
+<joint name="kinect_ir_trans" type="fixed">
+  <origin xyz="0 0 0" rpy="0 0 -1.57" /> 
+  <parent link="kinect2_front_frame" />
   <child link="kinect2_ir_optical_frame" />
+</joint>
+
+<link name = "kinect2_camera_frame">
+  <visual>
+   <geometry>
+    <box size="0.001 0.001 0.001"/>
+   </geometry>
+   <origin rpy = "0 0 0" xyz = "0 0 0" />
+  </visual>
+</link>
+<joint name="kinect_camra_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="3.1415926 0 -1.5707963" />
+    <parent link="kinect2_ir_optical_frame" />
+    <child link="kinect2_camera_frame" />
 </joint>
 
 <link name = "kinect2_rgb_optical_frame">
@@ -102,13 +216,13 @@
    <geometry>
     <box size="0.001 0.001 0.001"/>
    </geometry>
-   <origin rpy = "0 0 0" xyz = "0 0 0"/>
+   <origin rpy = "0 0 0" xyz = "0 0 0" />
   </visual>
 </link>
-<joint name="kinect_rgb_joint" type="fixed">
-  <origin xyz="0 0 0" rpy="0 0 0" /> <!--pos-->
-  <parent link="kinect2_ir_optical_frame" />
-  <child link="kinect2_rgb_optical_frame" />
+<joint name="kinect_hd_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 1.5707963 0" />
+    <parent link="kinect2_camera_frame" />
+    <child link="kinect2_rgb_optical_frame" />
 </joint>
 
 <!-- Gazebo plugin for planar move -->
@@ -156,10 +270,10 @@
 </gazebo>
 
 <!-- Gazebo plugin for Kinect v2 -->
-<gazebo reference="kinect2_ir_optical_frame">
+<gazebo reference="kinect2_head_frame">
   <sensor type="depth" name="kinect2_depth_sensor" >
     <always_on>true</always_on>
-    <update_rate>20.0</update_rate>
+    <update_rate>10.0</update_rate>
     <camera name="kinect2_depth_sensor">
       <horizontal_fov>1.221730456</horizontal_fov>
       <image>
