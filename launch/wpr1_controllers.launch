@@ -22,4 +22,6 @@
     <remap from="/joint_states" to="/wpr1/joint_states" />
   </node>
 
+  <node name="wpr1_sim" pkg="wpr_simulation" type="wpr1_sim" output="screen"/>
+  
 </launch>

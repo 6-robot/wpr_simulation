@@ -220,6 +220,14 @@ target_link_libraries(wpb_home_sim
   ${catkin_LIBRARIES}
 )
 
+add_executable(wpr1_sim
+  src/wpr1_sim.cpp
+)
+add_dependencies(wpr1_sim ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(wpr1_sim
+  ${catkin_LIBRARIES}
+)
+
 add_executable(demo_vel_ctrl
   src/demo_vel_ctrl.cpp
 )
