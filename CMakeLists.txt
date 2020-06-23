@@ -259,3 +259,11 @@ add_dependencies(demo_map_tool ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPO
 target_link_libraries(demo_map_tool
   ${catkin_LIBRARIES}
 )
+
+add_executable(demo_sr_navigation
+  src/demo_sr_navigation.cpp
+)
+add_dependencies(demo_sr_navigation ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(demo_sr_navigation
+  ${catkin_LIBRARIES}
+)
