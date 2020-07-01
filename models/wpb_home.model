@@ -227,7 +227,8 @@
 
 <!-- Gazebo plugin for planar move -->
 <gazebo>
-  <plugin name="base_controller" filename="libgazebo_ros_planar_move.so">
+  <plugin name="base_controller" filename="libwpr_plugin.so">
+    <publishOdometryTf>true</publishOdometryTf>
     <commandTopic>cmd_vel</commandTopic>
     <odometryTopic>odom</odometryTopic>
     <odometryFrame>odom</odometryFrame>

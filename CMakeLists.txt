@@ -20,6 +20,12 @@ find_package(catkin REQUIRED COMPONENTS
   tf
 )
 
+# Find Gazebo
+find_package(gazebo REQUIRED)
+include_directories(${GAZEBO_INCLUDE_DIRS})
+link_directories(${GAZEBO_LIBRARY_DIRS})
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GAZEBO_CXX_FLAGS}")
+
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
@@ -123,7 +129,7 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-# include
+  include
   ${catkin_INCLUDE_DIRS}
 )
 
@@ -211,6 +217,9 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+
+add_library(wpr_plugin SHARED src/wpr_plugin.cpp)
+target_link_libraries(wpr_plugin ${GAZEBO_LIBRARIES})
 
 add_executable(wpb_home_sim
   src/wpb_home_sim.cpp
