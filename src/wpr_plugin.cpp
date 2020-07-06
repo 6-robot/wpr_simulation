@@ -222,6 +222,7 @@ namespace gazebo
         publishOdometry(seconds_since_last_update);
         last_odom_publish_time_ = current_time;
       }
+    }
   #endif
   }
 
