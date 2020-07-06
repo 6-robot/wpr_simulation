@@ -500,7 +500,7 @@
         <self_collide>1</self_collide>
  </gazebo>
 
-<!-- Gazebo plugin for planar move -->
+<!-- Gazebo plugin for WPR -->
 <gazebo>
   <plugin name="base_controller" filename="libwpr_plugin.so">
     <publishOdometryTf>true</publishOdometryTf>
@@ -615,6 +615,39 @@
           <imageTopicName>image_color_rect</imageTopicName>
           <cameraInfoTopicName>camera_info</cameraInfoTopicName>
           <frameName>kinect2_rgb_optical_frame</frameName>
+          <baseline>0.1</baseline>
+          <distortionK1>0.0</distortionK1>
+          <distortionK2>0.0</distortionK2>
+          <distortionK3>0.0</distortionK3>
+          <distortionT1>0.0</distortionT1>
+          <distortionT2>0.0</distortionT2>
+        </plugin>
+    </sensor>
+</gazebo>
+
+<gazebo reference="kinect2_head_frame">
+    <sensor type="camera" name="kinect2_qhd_rgb_sensor">
+        <always_on>true</always_on>
+        <update_rate>20.0</update_rate>
+        <camera name="kinect2_qhd_rgb_sensor">
+          <horizontal_fov>1.221730456</horizontal_fov>
+          <image>
+              <width>960</width>
+              <height>540</height>
+              <format>R8G8B8</format>
+          </image>
+          <clip>
+              <near>0.2</near>
+              <far>10.0</far>
+          </clip>
+        </camera>
+        <plugin name="kinect2_qhd_rgb_controller" filename="libgazebo_ros_camera.so">
+          <alwaysOn>true</alwaysOn>
+          <update_rate>20.0</update_rate>
+          <cameraName>kinect2/qhd</cameraName>
+          <imageTopicName>image_color_rect</imageTopicName>
+          <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+          <frameName>kinect2_head_frame</frameName>
           <baseline>0.1</baseline>
           <distortionK1>0.0</distortionK1>
           <distortionK2>0.0</distortionK2>

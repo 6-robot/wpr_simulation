@@ -1,0 +1,21 @@
+<launch>
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find wpr_simulation)/worlds/wpb_simple.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="recording" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <!-- Spawn the objects into Gazebo -->
+  <node name="orange_ball" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/balls/orange_ball.model -x 2.0 -y -0 -z 0  -urdf -model orange_ball" />
+  <node name="red_ball" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/balls/red_ball.model -x 2.0 -y 0.5 -z 0  -urdf -model red_ball" />
+  <node name="green_ball" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/balls/green_ball.model -x 2.0 -y -0.5 -z 0 -urdf -model green_ball" />
+  <node name="blue_ball" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/balls/blue_ball.model -x 3.0 -y -0 -z 0  -urdf -model blue_ball" />
+
+  <!-- Spawn a robot into Gazebo -->
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/wpb_home.model -urdf -model wpb_home" />
+
+</launch>

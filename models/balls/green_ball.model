@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<robot name="green_ball">
+<!-- base -->
+<link name="base_link">
+<visual>
+  <geometry>
+    <box size="0.001 0.001 0.001" />
+  </geometry>
+  <origin rpy = "0 0 0" xyz = "0 0 0"/>
+</visual>
+</link>
+
+  <!-- body -->
+  <link name = "body_link">
+    <visual>
+      <geometry>
+        <sphere radius="0.15"/>
+      </geometry>
+      <origin rpy = "0 0 0" xyz = "0 0 0.15"/>
+    </visual>
+    <collision>
+      <origin xyz="0.0 0.0 0.15" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.15"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1"/>
+      <inertia ixx="0.015" ixy="0.0" ixz="0.0" iyy="0.015" iyz="0.0" izz="0.015"/>
+    </inertial>
+  </link>
+  <joint name = "base_to_body" type = "fixed">
+    <parent link = "base_link"/>
+    <child link = "body_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/> <!--pos-->
+  </joint>
+
+<gazebo reference="body_link">
+  <material>Gazebo/Green</material>
+</gazebo>
+
+<!-- Gazebo plugin for move -->
+<gazebo>
+  <plugin name="green_ball_controller" filename="libgazebo_ros_planar_move.so">
+    <commandTopic>green_ball_vel</commandTopic>
+    <odometryTopic>green_odom</odometryTopic>
+    <odometryFrame>green_odom</odometryFrame>
+    <odometryRate>0.0</odometryRate>
+    <robotBaseFrame>base_link</robotBaseFrame>
+    <broadcastTF>false</broadcastTF>
+  </plugin>
+</gazebo>
+
+</robot>

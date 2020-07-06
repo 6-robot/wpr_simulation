@@ -18,6 +18,8 @@ find_package(catkin REQUIRED COMPONENTS
   move_base_msgs 
   actionlib
   tf
+  cv_bridge 
+  image_transport
 )
 
 # Find Gazebo
@@ -25,6 +27,9 @@ find_package(gazebo REQUIRED)
 include_directories(${GAZEBO_INCLUDE_DIRS})
 link_directories(${GAZEBO_LIBRARY_DIRS})
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GAZEBO_CXX_FLAGS}")
+
+# Find OpenCV
+find_package(OpenCV REQUIRED)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -131,6 +136,7 @@ catkin_package(
 include_directories(
   include
   ${catkin_INCLUDE_DIRS}
+  ${OpenCV_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
@@ -275,4 +281,28 @@ add_executable(demo_sr_navigation
 add_dependencies(demo_sr_navigation ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(demo_sr_navigation
   ${catkin_LIBRARIES}
+)
+
+add_executable(ball_random_move
+  src/ball_random_move.cpp
+)
+add_dependencies(ball_random_move ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(ball_random_move
+  ${catkin_LIBRARIES}
+)
+
+add_executable(demo_cv_image
+  src/demo_cv_image.cpp
+)
+add_dependencies(demo_cv_image ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(demo_cv_image
+  ${catkin_LIBRARIES} ${OpenCV_LIBS}
+)
+
+add_executable(demo_cv_hsv
+  src/demo_cv_hsv.cpp
+)
+add_dependencies(demo_cv_hsv ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(demo_cv_hsv
+  ${catkin_LIBRARIES} ${OpenCV_LIBS}
 )
