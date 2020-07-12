@@ -45,13 +45,13 @@
 using namespace cv;
 using namespace std;
 
-static int iLowH = 20;
-static int iHighH = 80;
+static int iLowH = 10;
+static int iHighH = 40;
 
 static int iLowS = 90; 
 static int iHighS = 255;
 
-static int iLowV = 50;
+static int iLowV = 1;
 static int iHighV = 255;
 
 void Cam_RGB_Callback(const sensor_msgs::ImageConstPtr& msg)
@@ -98,7 +98,7 @@ void Cam_RGB_Callback(const sensor_msgs::ImageConstPtr& msg)
     int nImgWidth = imgThresholded.cols;
     int nImgHeight = imgThresholded.rows;
     int nImgChannels = imgThresholded.channels();
-    printf("w= %d   h= %d   size = %d\n",nImgWidth,nImgHeight,nImgChannels);
+    //printf("w= %d   h= %d   size = %d\n",nImgWidth,nImgHeight,nImgChannels);
     for (int y = 0; y < nImgHeight; y++)
     {
         for(int x = 0; x < nImgWidth; x++)
