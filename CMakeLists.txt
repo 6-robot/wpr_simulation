@@ -306,3 +306,11 @@ add_dependencies(demo_cv_hsv ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORT
 target_link_libraries(demo_cv_hsv
   ${catkin_LIBRARIES} ${OpenCV_LIBS}
 )
+
+add_executable(demo_cv_follow
+  src/demo_cv_follow.cpp
+)
+add_dependencies(demo_cv_follow ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(demo_cv_follow
+  ${catkin_LIBRARIES} ${OpenCV_LIBS}
+)
