@@ -46,7 +46,7 @@
   <arg name="model" default="$(find wpr1_bringup)/urdf/wpr1.urdf"/>
 
   <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
-  <arg name="rvizconfig" default="$(find wpr_simulation)/rviz/slam.rviz" />
+  <arg name="rvizconfig" default="$(find wpr_simulation)/rviz/nav.rviz" />
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
 
   <!-- Joy Node -->

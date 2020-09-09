@@ -314,3 +314,11 @@ add_dependencies(demo_cv_follow ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXP
 target_link_libraries(demo_cv_follow
   ${catkin_LIBRARIES} ${OpenCV_LIBS}
 )
+
+add_executable(demo_cv_face_detect
+  src/demo_cv_face_detect.cpp
+)
+add_dependencies(demo_cv_face_detect ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(demo_cv_face_detect
+  ${catkin_LIBRARIES} ${OpenCV_LIBS}
+)

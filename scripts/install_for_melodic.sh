@@ -5,3 +5,4 @@ sudo apt-get install ros-melodic-joint-state-controller
 sudo apt-get install ros-melodic-position-controllers
 sudo apt-get install ros-melodic-effort-controllers
 sudo apt-get install ros-melodic-cv-bridge
+sudo apt-get install ros-melodic-controller-manager

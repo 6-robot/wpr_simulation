@@ -258,7 +258,7 @@ int main(int argc, char** argv)
     sleep(10);
 
     std_msgs::Float64 joint_pos_msg;
-    joint_pos_msg.data = 0.015;
+    joint_pos_msg.data = 0.25;
     base_to_torso_pub.publish(joint_pos_msg);
     //手臂根关节
     joint_pos_msg.data =  1.57;

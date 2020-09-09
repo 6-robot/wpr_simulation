@@ -1,0 +1,18 @@
+<launch>
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find wpr_simulation)/worlds/light.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="recording" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <!-- Spawn the objects into Gazebo -->
+  <node name="kai_standing" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/kai_standing.model  -x -2 -y 0 -z 0 -Y 1.57  -urdf -model kai_standing" />
+
+  <!-- Spawn a robot into Gazebo -->
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/wpb_home_head_up.model -Y 3.14 -urdf -model wpb_home_head_up" />
+
+</launch>

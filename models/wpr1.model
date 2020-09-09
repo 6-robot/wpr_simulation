@@ -441,6 +441,20 @@
   <child link="kinect2_head_frame" />
 </joint>
 
+<link name = "kinect2_qhd_frame">
+  <visual>
+   <geometry>
+    <box size="0.001 0.001 0.001"/>
+   </geometry>
+   <origin xyz = "0 0 0" rpy = "0 0 0"/>
+  </visual>
+</link>
+<joint name="kinect_qhd" type="fixed">
+  <origin xyz="0 0 0" rpy="1.570795 0 0" /> 
+  <parent link="kinect2_head_frame" />
+  <child link="kinect2_qhd_frame" />
+</joint>
+
 <link name = "kinect2_ir_optical_frame">
   <visual>
    <geometry>
@@ -488,8 +502,20 @@
  </gazebo>
 
 <!-- Gazebo plugin for planar move -->
-<gazebo>
+<!-- <gazebo>
   <plugin name="base_controller" filename="libgazebo_ros_planar_move.so">
+    <commandTopic>cmd_vel</commandTopic>
+    <odometryTopic>odom</odometryTopic>
+    <odometryFrame>odom</odometryFrame>
+    <odometryRate>20.0</odometryRate>
+    <robotBaseFrame>base_footprint</robotBaseFrame>
+  </plugin>
+</gazebo> -->
+
+<!-- Gazebo plugin for WPR -->
+<gazebo>
+  <plugin name="base_controller" filename="libwpr_plugin.so">
+    <publishOdometryTf>true</publishOdometryTf>
     <commandTopic>cmd_vel</commandTopic>
     <odometryTopic>odom</odometryTopic>
     <odometryFrame>odom</odometryFrame>
@@ -498,11 +524,12 @@
   </plugin>
 </gazebo>
 
+
 <!-- Gazebo plugin for hokuyo UTM-10 -->
 <gazebo reference="laser">
     <sensor type="ray" name="head_hokuyo_sensor">
       <pose>0 0 0.10 0 0 0</pose>
-      <visualize>true</visualize>
+      <visualize>false</visualize>
       <update_rate>10</update_rate>
       <ray>
         <scan>
@@ -601,6 +628,39 @@
           <imageTopicName>image_color_rect</imageTopicName>
           <cameraInfoTopicName>camera_info</cameraInfoTopicName>
           <frameName>kinect2_rgb_optical_frame</frameName>
+          <baseline>0.1</baseline>
+          <distortionK1>0.0</distortionK1>
+          <distortionK2>0.0</distortionK2>
+          <distortionK3>0.0</distortionK3>
+          <distortionT1>0.0</distortionT1>
+          <distortionT2>0.0</distortionT2>
+        </plugin>
+    </sensor>
+</gazebo>
+
+<gazebo reference="kinect2_qhd_frame">
+    <sensor type="camera" name="kinect2_qhd_rgb_sensor">
+        <always_on>true</always_on>
+        <update_rate>20.0</update_rate>
+        <camera name="kinect2_qhd_rgb_sensor">
+          <horizontal_fov>1.221730456</horizontal_fov>
+          <image>
+              <width>960</width>
+              <height>540</height>
+              <format>R8G8B8</format>
+          </image>
+          <clip>
+              <near>0.2</near>
+              <far>10.0</far>
+          </clip>
+        </camera>
+        <plugin name="kinect2_qhd_rgb_controller" filename="libgazebo_ros_camera.so">
+          <alwaysOn>true</alwaysOn>
+          <update_rate>20.0</update_rate>
+          <cameraName>kinect2/qhd</cameraName>
+          <imageTopicName>image_color_rect</imageTopicName>
+          <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+          <frameName>kinect2_qhd_frame</frameName>
           <baseline>0.1</baseline>
           <distortionK1>0.0</distortionK1>
           <distortionK2>0.0</distortionK2>
