@@ -19,7 +19,7 @@
   <link name="base_link">
     <visual>
     <geometry>
-      <mesh filename="package://wpr1_bringup/meshes/base.dae" scale="1 1 1"/>
+      <mesh filename="package://wpr_simulation/meshes/wpr1/base.dae" scale="1 1 1"/>
     </geometry>
     <origin rpy = "1.57 0 -1.57" xyz = "0.22 .293 0"/>
     </visual>
@@ -57,7 +57,7 @@
   <link name = "torso_link">
     <visual>
       <geometry>
-        <mesh filename="package://wpr1_bringup/meshes/torso.dae" scale="1 1 1"/>
+        <mesh filename="package://wpr_simulation/meshes/wpr1/torso.dae" scale="1 1 1"/>
       </geometry>
       <origin rpy = "1.57 0 0" xyz = "0 0.1405 0"/>
     </visual>
@@ -112,7 +112,7 @@
   <link name = "upperarm_link">
     <visual>
       <geometry>
-        <mesh filename="package://wpr1_bringup/meshes/upperarm.dae" scale="1 1 1"/>
+        <mesh filename="package://wpr_simulation/meshes/wpr1/upperarm.dae" scale="1 1 1"/>
       </geometry>
       <origin rpy = "0 -1.57 0" xyz = "0.235 -0.087 -0.046"/>
     </visual>
@@ -149,7 +149,7 @@
   <link name = "forearm_link">
     <visual>
       <geometry>
-        <mesh filename="package://wpr1_bringup/meshes/forearm.dae" scale="1 1 1"/>
+        <mesh filename="package://wpr_simulation/meshes/wpr1/forearm.dae" scale="1 1 1"/>
       </geometry>
       <origin rpy = "1.57 1.57 0" xyz = "-0.033 0.07 0.046"/>
     </visual>
@@ -186,7 +186,7 @@
   <link name = "palm_link">
     <visual>
       <geometry>
-        <mesh filename="package://wpr1_bringup/meshes/palm.dae" scale="1 1 1"/>
+        <mesh filename="package://wpr_simulation/meshes/wpr1/palm.dae" scale="1 1 1"/>
       </geometry>
       <origin rpy = "0 3.14 -1.57" xyz = "0 -0.0655 0.069"/>
     </visual>
@@ -262,7 +262,7 @@
    <link name = "mani_left_finger_tip">
     <visual>
         <geometry>
-            <mesh filename="package://wpr_simulation/meshes/wpr1_fingertip.dae" scale="1 1 1"/>
+            <mesh filename="package://wpr_simulation/meshes/wpr1/fingertip.dae" scale="1 1 1"/>
         </geometry>
         <origin rpy = "0 0 -1.57" xyz = "0 0.005 -0.013"/>
     </visual>
