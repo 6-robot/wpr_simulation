@@ -26,7 +26,7 @@
   <arg name="gui" default="false" />
   <arg name="rvizconfig" default="$(find wpr_simulation)/rviz/grab.rviz" />
 
-  <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
+  <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
   <param name="use_gui" value="$(arg gui)"/>
 
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
