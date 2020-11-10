@@ -568,7 +568,7 @@
       <image>
           <width>512</width>
           <height>424</height>
-          <format>L8</format>
+          <format>B8G8R8</format>
       </image>
       <clip>
           <near>0.5</near>
