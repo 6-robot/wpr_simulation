@@ -11,7 +11,8 @@
 
   <!-- Spawn the objects into Gazebo -->
   <node name="table" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/table.model -x 1.2 -y 0.0 -z 0 -Y 0 -urdf -model table" />
-  <node name="bottle" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/bottle.model -x 1.1 -y 0.3 -z 1.0 -Y 0 -urdf -model bottle" />
+  <node name="red_bottle" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/bottles/red_bottle.model -x 1.1 -y 0.3 -z 2.0 -Y 0 -urdf -model red_bottle" />
+  <node name="green_bottle" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/bottles/green_bottle.model -x 1.1 -y -0.2 -z 2.0 -Y 0 -urdf -model green_bottle" />
 
   <!-- Spawn a robot into Gazebo -->
   <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-file $(find wpr_simulation)/models/wpb_home_mani.model -urdf -model wpb_home_mani" />
@@ -19,7 +20,18 @@
   <!-- load the controllers of WPB_HOME -->
   <include file="$(find wpr_simulation)/launch/wpb_home_controllers.launch"/>
 
+  <!-- wpb_home_grab_server -->
   <node pkg="wpb_home_behaviors" type="wpb_home_grab_server" name="wpb_home_grab_server" />
+
+  <!-- wpb_home_objects_3d -->
+  <node pkg="wpb_home_behaviors" type="wpb_home_objects_3d" name="wpb_home_objects_3d" output="screen">
+    <param name="topic" type="string" value="/kinect2/sd/points"/>
+  </node>
+
+  <!-- wpb_home_grab_action -->
+  <node pkg="wpb_home_behaviors" type="wpb_home_grab_action" name="wpb_home_grab_action">
+    <rosparam file="$(find wpb_home_bringup)/config/wpb_home.yaml" command="load" />
+  </node>
 
   <!-- rviz -->
   <arg name="model" default="$(find wpb_home_bringup)/urdf/wpb_home_mani.urdf"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot name="bottle">
+<robot name="red_bottle">
 
 <!-- base -->
 <link name="base_link">
@@ -45,22 +45,13 @@
   <material>Gazebo/Red</material>
 </gazebo>
 
-<link name = "handle_link">
-  <collision>
-    <origin xyz="0 0 0" rpy="0 0 0" />
-    <geometry>
-      <cylinder length="0.005" radius="0.04"/>
-    </geometry>
-  </collision>
-  <inertial>
-    <mass value="0.00001"/>
-    <inertia ixx="0.000001" ixy="0.0" ixz="0.0" iyy="0.000001" iyz="0.0" izz="0.000001"/>
-  </inertial>
-</link>
-<joint name = "base_to_handle" type = "fixed">
-  <parent link = "base_link"/>
-  <child link = "handle_link"/>
-  <origin rpy="0 0 0" xyz="0 0 0.09"/> <!--pos-->
-</joint>
+<gazebo reference="body_link">
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <mu1>50.0</mu1>
+    <mu2>50.0</mu2>
+    <maxVel>1.0</maxVel>
+    <minDepth>0.001</minDepth>
+</gazebo>
 
 </robot>

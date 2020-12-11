@@ -56,7 +56,7 @@ roslaunch wpr_simulation wpb_navigation.launch
 
 物品抓取:
 ```
-roslaunch wpr_simulation wpb_home_table.launch
+roslaunch wpr_simulation wpb_table.launch
 rosrun wpb_home_tutorials wpb_home_grab_client
 ```
 ![wpb_home_table pic](./media/wpb_home_table.png)

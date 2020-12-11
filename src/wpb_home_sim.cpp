@@ -97,15 +97,21 @@ void ManiHeight(float inHeight)
 
 void ManiCtrlCallback(const sensor_msgs::JointState::ConstPtr& msg)
 {
-    // int nNumJoint = msg->position.size();
-    // for(int i=0;i<nNumJoint;i++)
-    // {
-    //     ROS_INFO("[wpb_home] %d - %s = %.2f  vel= %.2f", i, msg->name[i].c_str(),msg->position[i],msg->velocity[i]);
-    // }
-    //高度升降
-    ManiHeight(msg->position[0]);
-    //手爪
-    ManiGripper(msg->position[1]);
+    int nNumJoint = msg->position.size();
+    for(int i=0;i<nNumJoint;i++)
+    {
+        //ROS_INFO("[wpb_home] %d - %s = %.2f  vel= %.2f", i, msg->name[i].c_str(),msg->position[i],msg->velocity[i]);
+        if(msg->name[i] == "lift")
+        {
+            //高度升降
+            ManiHeight(msg->position[i]);
+        }
+        if(msg->name[i] == "gripper")
+        {
+            //手爪
+            ManiGripper(msg->position[i]);
+        }
+    }
 }
 
 geometry_msgs::Pose2D CalDiffPose(geometry_msgs::Pose2D inMapPose)
@@ -177,8 +183,8 @@ int main(int argc, char** argv)
         {
             listener.lookupTransform("/pose_reset","/base_footprint",ros::Time(0),tf_diff);
 
-            pose_diff_msg.x = tf_diff.getOrigin().x();
-            pose_diff_msg.y = tf_diff.getOrigin().y();
+            pose_diff_msg.x = tf_diff.getOrigin().x()*0.9;
+            pose_diff_msg.y = tf_diff.getOrigin().y()*0.9;
             tf::Quaternion pose_quat = tf_diff.getRotation ();
             float pose_yaw = tf::getYaw(pose_quat);
             pose_diff_msg.theta = pose_yaw - pose_reset.theta;
