@@ -1,0 +1,7 @@
+<launch>
+
+  <include file="$(find wpr_simulation)/launch/wpb_balls.launch"/>
+
+  <node pkg="wpr_simulation" name="keyboard_ctrl" type="keyboard_vel_ctrl" output="screen"/>
+
+</launch>
