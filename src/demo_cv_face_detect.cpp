@@ -73,7 +73,7 @@ void callbackRGB(const sensor_msgs::ImageConstPtr& msg)
 	equalizeHist( frame_gray, frame_gray );
 
     //-- Detect faces
-	face_cascade.detectMultiScale( frame_gray, faces, 1.1, 9, 0|CV_HAAR_SCALE_IMAGE, Size(30, 30) );
+	face_cascade.detectMultiScale( frame_gray, faces, 1.1, 9, 0|CASCADE_SCALE_IMAGE, Size(30, 30) );
 
     if(faces.size() > 0)
     {
