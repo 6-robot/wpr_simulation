@@ -340,12 +340,6 @@
           <imageTopicName>image_color_rect</imageTopicName>
           <cameraInfoTopicName>camera_info</cameraInfoTopicName>
           <frameName>kinect2_rgb_optical_frame</frameName>
-          <baseline>0.1</baseline>
-          <distortionK1>0.0</distortionK1>
-          <distortionK2>0.0</distortionK2>
-          <distortionK3>0.0</distortionK3>
-          <distortionT1>0.0</distortionT1>
-          <distortionT2>0.0</distortionT2>
         </plugin>
     </sensor>
 </gazebo>
@@ -373,12 +367,6 @@
           <imageTopicName>image_color_rect</imageTopicName>
           <cameraInfoTopicName>camera_info</cameraInfoTopicName>
           <frameName>kinect2_head_frame</frameName>
-          <baseline>0.1</baseline>
-          <distortionK1>0.0</distortionK1>
-          <distortionK2>0.0</distortionK2>
-          <distortionK3>0.0</distortionK3>
-          <distortionT1>0.0</distortionT1>
-          <distortionT2>0.0</distortionT2>
         </plugin>
     </sensor>
 </gazebo>
