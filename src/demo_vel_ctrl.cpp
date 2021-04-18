@@ -45,6 +45,7 @@ int main(int argc, char** argv)
   ros::NodeHandle n;
   ros::Publisher vel_pub = n.advertise<geometry_msgs::Twist>("/cmd_vel", 10);
 
+  ros::Rate r(30);
   while(ros::ok())
   {
     geometry_msgs::Twist vel_cmd;
@@ -56,6 +57,7 @@ int main(int argc, char** argv)
     vel_cmd.angular.z = 0;
     vel_pub.publish(vel_cmd);
     ros::spinOnce();
+    r.sleep();
   }
 
   return 0;
