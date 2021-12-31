@@ -26,6 +26,7 @@
   <!-- wpb_home_objects_3d -->
   <node pkg="wpb_home_behaviors" type="wpb_home_objects_3d" name="wpb_home_objects_3d" output="screen">
     <param name="topic" type="string" value="/kinect2/sd/points"/>
+    <param name="start" type="bool" value="true"/>
   </node>
 
   <!-- wpb_home_grab_action -->
