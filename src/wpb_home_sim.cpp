@@ -114,11 +114,6 @@ void ManiCtrlCallback(const sensor_msgs::JointState::ConstPtr& msg)
     }
 }
 
-geometry_msgs::Pose2D CalDiffPose(geometry_msgs::Pose2D inMapPose)
-{
-
-}
-
 static geometry_msgs::Pose2D pose_diff_msg;
 void CtrlCallback(const std_msgs::String::ConstPtr &msg)
 {
