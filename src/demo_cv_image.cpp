@@ -43,7 +43,7 @@
 
 using namespace cv;
 
-void Cam_RGB_Callback(const sensor_msgs::ImageConstPtr& msg)
+void Cam_RGB_Callback(const sensor_msgs::Image msg)
 {
     cv_bridge::CvImagePtr cv_ptr;
     try

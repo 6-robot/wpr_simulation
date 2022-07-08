@@ -57,7 +57,7 @@ static int iHighV = 255;
 geometry_msgs::Twist vel_cmd;   //速度消息包
 ros::Publisher vel_pub;                     //速度发送
 
-void Cam_RGB_Callback(const sensor_msgs::ImageConstPtr& msg)
+void Cam_RGB_Callback(const sensor_msgs::Image msg)
 {
     cv_bridge::CvImagePtr cv_ptr;
     try

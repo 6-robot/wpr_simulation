@@ -50,7 +50,7 @@ static Mat frame_gray;
 static std::vector<Rect> faces;
 static std::vector<cv::Rect>::const_iterator face_iter;
 
-void callbackRGB(const sensor_msgs::ImageConstPtr& msg)
+void callbackRGB(const sensor_msgs::Image msg)
 {
     cv_bridge::CvImagePtr cv_ptr;
     try

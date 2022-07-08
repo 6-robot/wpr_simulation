@@ -54,7 +54,7 @@ static int iHighS = 255;
 static int iLowV = 1;
 static int iHighV = 255;
 
-void Cam_RGB_Callback(const sensor_msgs::ImageConstPtr& msg)
+void Cam_RGB_Callback(const sensor_msgs::Image msg)
 {
     //ROS_INFO("Cam_RGB_Callback");
     cv_bridge::CvImagePtr cv_ptr;

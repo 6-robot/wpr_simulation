@@ -43,12 +43,12 @@
 ros::Publisher vel_pub;
 static int nCount = 0;
 
-void lidarCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
+void LidarCallback(const sensor_msgs::LaserScan msg)
 {
-    int nNum = msg->ranges.size();
+    int nNum = msg.ranges.size();
     
     int nMid = nNum/2;
-    float fMidDist = msg->ranges[nMid];
+    float fMidDist = msg.ranges[nMid];
     ROS_INFO("前方测距 ranges[%d] = %f 米", nMid, fMidDist); 
 
     if(nCount > 0)
@@ -76,7 +76,7 @@ int main(int argc, char** argv)
     ros::init(argc,argv,"demo_lidar_behavior");
     
     ros::NodeHandle n;
-    ros::Subscriber lidar_sub = n.subscribe("/scan", 10, &lidarCallback);
+    ros::Subscriber lidar_sub = n.subscribe("/scan", 10, &LidarCallback);
     vel_pub = n.advertise<geometry_msgs::Twist>("/cmd_vel",10);
 
     ros::spin();

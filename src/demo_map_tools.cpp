@@ -36,9 +36,9 @@
 #include <ros/ros.h>
 #include <std_msgs/String.h>
 
-void NavResultCallback(const std_msgs::String::ConstPtr &msg)
+void NavResultCallback(const std_msgs::String &msg)
 {
-    ROS_WARN("[NavResultCallback] %s",msg->data.c_str());
+    ROS_WARN("[NavResultCallback] %s",msg.data.c_str());
 }
 
 int main(int argc, char** argv)

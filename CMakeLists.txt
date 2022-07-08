@@ -267,11 +267,11 @@ target_link_libraries(demo_simple_goal
   ${catkin_LIBRARIES}
 )
 
-add_executable(demo_map_tool
-  src/demo_map_tool.cpp
+add_executable(demo_map_tools
+  src/demo_map_tools.cpp
 )
-add_dependencies(demo_map_tool ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-target_link_libraries(demo_map_tool
+add_dependencies(demo_map_tools ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(demo_map_tools
   ${catkin_LIBRARIES}
 )
 
