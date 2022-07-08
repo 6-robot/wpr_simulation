@@ -291,6 +291,22 @@ target_link_libraries(ball_random_move
   ${catkin_LIBRARIES}
 )
 
+add_executable(demo_lidar_data
+  src/demo_lidar_data.cpp
+)
+add_dependencies(demo_lidar_data ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(demo_lidar_data
+  ${catkin_LIBRARIES}
+)
+
+add_executable(demo_lidar_behavior
+  src/demo_lidar_behavior.cpp
+)
+add_dependencies(demo_lidar_behavior ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(demo_lidar_behavior
+  ${catkin_LIBRARIES}
+)
+
 add_executable(demo_cv_image
   src/demo_cv_image.cpp
 )

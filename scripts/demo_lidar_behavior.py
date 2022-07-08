@@ -8,13 +8,13 @@ from geometry_msgs.msg import Twist
 count = 0
 
 # 激光雷达回调函数
-def cbScan(msg):
+def lidar_callback(msg):
     global vel_pub
     global count
     vel_msg = Twist()
     middle = len(msg.ranges)//2
     dist = msg.ranges[middle]
-    rospy.logwarn("正前方测距数值 = %.2f",dist)
+    rospy.logwarn("正前方测距数值 = %f 米",dist)
     if count > 0:
         count = count -1
         rospy.loginfo("持续转向 count = %d",count)
@@ -32,5 +32,5 @@ if __name__ == "__main__":
     # 发布机器人运动控制话题
     vel_pub = rospy.Publisher("cmd_vel",Twist,queue_size=10)
     # 订阅激光雷达的数据话题
-    lidar_sub = rospy.Subscriber("scan",LaserScan,cbScan,queue_size=10)
+    lidar_sub = rospy.Subscriber("scan",LaserScan,lidar_callback,queue_size=10)
     rospy.spin()
