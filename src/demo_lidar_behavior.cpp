@@ -43,12 +43,12 @@
 ros::Publisher vel_pub;
 static int nCount = 0;
 
-void lidarCallback(const sensor_msgs::LaserScan::ConstPtr& scan)
+void lidarCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
 {
-    int nNum = scan->ranges.size();
+    int nNum = msg->ranges.size();
     
     int nMid = nNum/2;
-    float fMidDist = scan->ranges[nMid];
+    float fMidDist = msg->ranges[nMid];
     ROS_INFO("前方测距 ranges[%d] = %f 米", nMid, fMidDist); 
 
     if(nCount > 0)
