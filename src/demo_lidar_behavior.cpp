@@ -58,14 +58,14 @@ void LidarCallback(const sensor_msgs::LaserScan msg)
     }
 
     geometry_msgs::Twist vel_cmd;
-    if(fMidDist > 1.5f)
-    {
-        vel_cmd.linear.x = 0.05;
-    }
-    else
+    if(fMidDist < 1.5f)
     {
         vel_cmd.angular.z = 0.3;
         nCount = 50;
+    }
+    else
+    {
+        vel_cmd.linear.x = 0.05;
     }
     vel_pub.publish(vel_cmd);
 }

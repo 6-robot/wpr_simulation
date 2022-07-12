@@ -19,11 +19,11 @@ def lidar_callback(msg):
         count = count -1
         rospy.loginfo("持续转向 count = %d",count)
         return
-    if dist > 1.5:
-        vel_msg.linear.x = 0.05
-    else:
+    if dist < 1.5:
         vel_msg.angular.z = 0.3
         count = 50
+    else:
+        vel_msg.linear.x = 0.05
     vel_pub.publish(vel_msg)
 
 # 主函数
