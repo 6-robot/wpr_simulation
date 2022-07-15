@@ -11,10 +11,10 @@ count = 0
 def lidar_callback(msg):
     global vel_pub
     global count
-    vel_cmd = Twist()
     middle = len(msg.ranges)//2
     dist = msg.ranges[middle]
     rospy.loginfo("正前方测距数值 = %f 米",dist)
+    vel_cmd = Twist()
     if count > 0:
         count = count -1
         rospy.logwarn("持续转向 count = %d",count)
