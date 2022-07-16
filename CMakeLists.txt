@@ -307,6 +307,15 @@ target_link_libraries(demo_lidar_behavior
   ${catkin_LIBRARIES}
 )
 
+add_executable(demo_imu_data
+  src/demo_imu_data.cpp
+)
+add_dependencies(demo_imu_data ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(demo_imu_data
+  ${catkin_LIBRARIES} ${OpenCV_LIBS}
+)
+
+
 add_executable(demo_cv_image
   src/demo_cv_image.cpp
 )
