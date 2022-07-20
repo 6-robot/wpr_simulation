@@ -315,6 +315,13 @@ target_link_libraries(demo_imu_data
   ${catkin_LIBRARIES} ${OpenCV_LIBS}
 )
 
+add_executable(demo_imu_behavior
+  src/demo_imu_behavior.cpp
+)
+add_dependencies(demo_imu_behavior ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(demo_imu_behavior
+  ${catkin_LIBRARIES} ${OpenCV_LIBS}
+)
 
 add_executable(demo_cv_image
   src/demo_cv_image.cpp
