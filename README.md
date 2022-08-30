@@ -2,9 +2,7 @@
 
 ## 系统版本
 
-- ROS Kinetic (Ubuntu 16.04)
-- ROS Melodic (Ubuntu 18.04)
-
+- ROS Noetic (Ubuntu 20.04)
 
 ## 使用说明
 
@@ -14,21 +12,17 @@
 cd ~/catkin_ws/src/
 git clone https://github.com/6-robot/wpr_simulation.git
 git clone https://github.com/6-robot/wpb_home.git
+git clone https://github.com/6-robot/waterplus_map_tools.git
 ```
 2. 安装依赖项:  
-ROS Kinetic (Ubuntu 16.04)
+ROS Noetic (Ubuntu 20.04)
 ```
 cd ~/catkin_ws/src/wpr_simulation/scripts
-./install_for_kinetic.sh
+./install_for_noetic.sh
 cd ~/catkin_ws/src/wpb_home/wpb_home_bringup/scripts
-./install_for_kinetic.sh
-```
-  ROS Melodic (Ubuntu 18.04)
-```
-cd ~/catkin_ws/src/wpr_simulation/scripts
-./install_for_melodic.sh
-cd ~/catkin_ws/src/wpb_home/wpb_home_bringup/scripts
-./install_for_melodic.sh
+./install_for_noetic.sh
+cd ~/catkin_ws/src/waterplus_map_tools/scripts
+./install_for_noetic.sh
 ```
 3. 编译
 ```
@@ -68,22 +62,17 @@ cd ~/catkin_ws/src/
 git clone https://github.com/6-robot/wpr_simulation.git
 git clone https://github.com/6-robot/wpr1.git
 git clone https://github.com/6-robot/waterplus_map_tools.git
-git clone https://github.com/6-robot/xfyun_kinetic.git
+git clone https://github.com/6-robot/xfyun_waterplus.git
 ```
 2. 安装依赖项:  
-ROS Kinetic (Ubuntu 16.04)
+ROS Noetic (Ubuntu 20.04)
 ```
 cd ~/catkin_ws/src/wpr_simulation/scripts
-./install_for_kinetic.sh
+./install_for_noetic.sh
 cd ~/catkin_ws/src/wpr1/wpr1_bringup/scripts
-./install_for_kinetic.sh
-```
-  ROS Melodic (Ubuntu 18.04)
-```
-cd ~/catkin_ws/src/wpr_simulation/scripts
-./install_for_melodic.sh
-cd ~/catkin_ws/src/wpr1/wpr1_bringup/scripts
-./install_for_melodic.sh
+./install_for_noetic.sh
+cd ~/catkin_ws/src/waterplus_map_tools/scripts
+./install_for_noetic.sh
 ```
 3. 编译
 ```
