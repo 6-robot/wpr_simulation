@@ -20,6 +20,7 @@ find_package(catkin REQUIRED COMPONENTS
   tf
   cv_bridge 
   image_transport
+  nav_msgs
 )
 
 # Find Gazebo
@@ -321,6 +322,14 @@ add_executable(demo_imu_behavior
 add_dependencies(demo_imu_behavior ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(demo_imu_behavior
   ${catkin_LIBRARIES} ${OpenCV_LIBS}
+)
+
+add_executable(demo_map_pub
+  src/demo_map_pub.cpp
+)
+add_dependencies(demo_map_pub ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(demo_map_pub
+  ${catkin_LIBRARIES}
 )
 
 add_executable(demo_cv_image

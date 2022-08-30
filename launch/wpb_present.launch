@@ -1,0 +1,10 @@
+<launch>
+  <!-- Robot Description -->
+  <arg name="model" default="$(find wpr_simulation)/models/wpb_home.model"/>
+  <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+  <!-- tf : map -> base_footprint -->
+  <node pkg="tf" type="static_transform_publisher" name="map_footprint_broadcaster" args="2 1 0 0 0 0.707 0.707 map base_footprint 30" />
+</launch>
