@@ -40,7 +40,7 @@
   </node>
 
   <!-- Rviz -->
-  <arg name="model" default="$(find wpb_home_bringup)/urdf/wpb_home.urdf"/>
+  <arg name="model" default="$(find wpr_simulation)/models/wpb_home.model"/>
   <arg name="gui" default="false" />
 
   <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
@@ -49,20 +49,20 @@
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" >
-    <rosparam command="load" file="$(find wpb_home_bringup)/config/wpb_home.yaml" />
+    <!-- <rosparam command="load" file="$(find wpb_home_bringup)/config/wpb_home.yaml" /> -->
   </node>
 
   <!-- joy node -->
-  <node respawn="true" pkg="joy" type="joy_node" name="wpb_home_joy" >
+  <!-- <node respawn="true" pkg="joy" type="joy_node" name="wpb_home_joy" >
     <param name="dev" type="string" value="/dev/input/js0" />
     <param name="deadzone" value="0.12" />
-  </node>
+  </node> -->
 
   <!-- Axes Velcmd -->
-  <param name="axis_linear" value="1" type="int"/>
+  <!-- <param name="axis_linear" value="1" type="int"/>
   <param name="axis_angular" value="0" type="int"/>
   <param name="scale_linear" value="1" type="double"/>
   <param name="scale_angular" value="1" type="double"/>
-  <node pkg="wpb_home_bringup" type="wpb_home_js_vel" name="teleop"/>
+  <node pkg="wpb_home_bringup" type="wpb_home_js_vel" name="teleop"/> -->
 
 </launch>
