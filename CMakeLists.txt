@@ -363,3 +363,11 @@ add_dependencies(demo_cv_face_detect ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catki
 target_link_libraries(demo_cv_face_detect
   ${catkin_LIBRARIES} ${OpenCV_LIBS}
 )
+
+add_executable(teleop_js_node
+  src/teleop_js_node.cpp
+)
+add_dependencies(teleop_js_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(teleop_js_node
+  ${catkin_LIBRARIES}
+)
