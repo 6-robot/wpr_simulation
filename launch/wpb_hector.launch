@@ -1,0 +1,9 @@
+<launch>
+
+  <!-- 载入 机器人 和 RoboCup@Home 的仿真场景 -->
+  <include file="$(find wpr_simulation)/launch/wpb_stage_robocup.launch"/>
+
+  <!-- Hector -->
+  <node pkg="hector_mapping" type="hector_mapping" name="hector_mapping"/>
+
+</launch>
