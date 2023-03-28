@@ -1,0 +1,17 @@
+<launch>
+
+  <!-- 载入 机器人 和 长走廊 的仿真场景 -->
+  <include file="$(find wpr_simulation)/launch/wpb_stage_corridor.launch"/>
+
+  <!-- Gmapping -->
+  <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping"/>
+
+  <!-- Rviz -->
+  <arg name="rvizconfig" default="$(find wpr_simulation)/rviz/slam.rviz" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+
+  <!-- 键盘控制 -->
+  <node pkg="wpr_simulation" type="keyboard_vel_ctrl" name="keyboard_vel_ctrl" output="screen"/>
+
+
+</launch>
