@@ -1,9 +1,15 @@
 <launch>
 
-  <!-- 载入 机器人 和 RoboCup@Home 的仿真场景 -->
-  <include file="$(find wpr_simulation)/launch/wpb_stage_robocup.launch"/>
+  <!-- 载入 机器人 和 SLAM 的仿真场景 -->
+  <include file="$(find wpr_simulation)/launch/wpb_stage_slam.launch"/>
 
-  <!-- Hector -->
+  <!-- Hector SLAM -->
   <node pkg="hector_mapping" type="hector_mapping" name="hector_mapping"/>
+
+  <!-- Rviz 显示 -->
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find wpr_simulation)/rviz/slam.rviz"/>
+
+  <!-- 运动控制 -->
+  <node pkg="rqt_robot_steering" type="rqt_robot_steering" name="rqt_robot_steering"/>
 
 </launch>
