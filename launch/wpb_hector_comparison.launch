@@ -1,0 +1,64 @@
+<launch>
+
+  <!-- 第一个 Hector_Mapping 建图节点 -->
+  <group ns="slam_1">
+    <node pkg="hector_mapping" type="hector_mapping" name="hector_mapping_1">
+
+      <param name="map_update_distance_thresh" value="0.4"/>
+      <param name="map_update_angle_thresh" value="0.06" />
+
+      <param name="map_frame" value="slam_1/map" />
+      <param name="base_frame" value="slam_1/base_footprint" />
+      <param name="odom_frame" value="slam_1/odom" />
+    </node>
+  </group>
+
+  <!-- 第二个 Hector_Mapping 建图节点 -->
+  <group ns="slam_2">
+    <node pkg="hector_mapping" type="hector_mapping" name="hector_mapping_2">
+
+      <param name="map_update_distance_thresh" value="0.1"/>
+      <param name="map_update_angle_thresh" value="0.01" />
+
+      <param name="map_frame" value="slam_2/map" />
+      <param name="base_frame" value="slam_2/base_footprint" />
+      <param name="odom_frame" value="slam_2/odom" />
+    </node>
+  </group>
+
+  <!-- **************************** 分割线 **************************** -->
+
+  <!-- 载入 SLAM 的仿真场景 -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+  <arg name="world_name" value="$(find wpr_simulation)/worlds/slam_simple.world"/>
+  <arg name="paused" value="false"/>
+  <arg name="use_sim_time" value="true"/>
+  <arg name="gui" value="true"/>
+  <arg name="recording" value="false"/>
+  <arg name="debug" value="false"/>
+  </include>
+
+  <!-- 载入 1号机器人 -->
+  <include file="$(find wpr_simulation)/launch/wpb_slam_template.launch">
+      <arg name="robot_namespace" value="slam_1" /> 
+      <arg name="local_x" value="0" /> 
+      <arg name="local_y" value="-0.3" /> 
+      <arg name="local_yaw" value="0" /> 
+  </include>
+
+  <!-- 载入 2号机器人 -->
+  <include file="$(find wpr_simulation)/launch/wpb_slam_template.launch">
+      <arg name="robot_namespace" value="slam_2" /> 
+      <arg name="local_x" value="0" /> 
+      <arg name="local_y" value="0.3" /> 
+      <arg name="local_yaw" value="0" /> 
+  </include>
+
+  <!-- 运动控制 -->
+  <node pkg="rqt_robot_steering" type="rqt_robot_steering" name="rqt_robot_steering"/>
+
+  <!-- 速度话题分流 -->
+  <node pkg = "topic_tools" type = "relay" name = "relay_1" args="/cmd_vel /slam_1/cmd_vel" />
+  <node pkg = "topic_tools" type = "relay" name = "relay_2" args="/cmd_vel /slam_2/cmd_vel" />
+
+</launch>
