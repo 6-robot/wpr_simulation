@@ -5,7 +5,9 @@
     <node pkg="hector_mapping" type="hector_mapping" name="hector_mapping_1">
 
       <param name="map_update_distance_thresh" value="0.4"/>
-      <param name="map_update_angle_thresh" value="0.06" />
+      <param name="map_update_angle_thresh" value="0.9" />
+      <param name="map_pub_period" value="0.2" />
+      
 
       <param name="map_frame" value="slam_1/map" />
       <param name="base_frame" value="slam_1/base_footprint" />
@@ -18,7 +20,8 @@
     <node pkg="hector_mapping" type="hector_mapping" name="hector_mapping_2">
 
       <param name="map_update_distance_thresh" value="0.1"/>
-      <param name="map_update_angle_thresh" value="0.01" />
+      <param name="map_update_angle_thresh" value="0.1" />
+      <param name="map_pub_period" value="0.2" />
 
       <param name="map_frame" value="slam_2/map" />
       <param name="base_frame" value="slam_2/base_footprint" />
