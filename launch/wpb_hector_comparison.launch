@@ -8,7 +8,6 @@
       <param name="map_update_angle_thresh" value="0.9" />
       <param name="map_pub_period" value="0.2" />
       
-
       <param name="map_frame" value="slam_1/map" />
       <param name="base_frame" value="slam_1/base_footprint" />
       <param name="odom_frame" value="slam_1/odom" />
