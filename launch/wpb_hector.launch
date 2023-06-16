@@ -4,7 +4,9 @@
   <include file="$(find wpr_simulation)/launch/wpb_stage_slam.launch"/>
 
   <!-- Hector SLAM -->
-  <node pkg="hector_mapping" type="hector_mapping" name="hector_mapping"/>
+  <node pkg="hector_mapping" type="hector_mapping" name="hector_mapping">
+    <param name="tf_map_scanmatch_transform_frame_name" value="base_footprint" />
+  </node>
 
   <!-- Rviz 显示 -->
   <node pkg="rviz" type="rviz" name="rviz" args="-d $(find wpr_simulation)/rviz/slam.rviz"/>
