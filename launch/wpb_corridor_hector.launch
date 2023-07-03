@@ -5,12 +5,12 @@
 
   <!-- Hector -->
   <node pkg="hector_mapping" type="hector_mapping" name="hector_mapping"/>
-
+  
   <!-- Rviz -->
-  <arg name="rvizconfig" default="$(find wpr_simulation)/rviz/slam.rviz" />
+  <arg name="rvizconfig" default="$(find wpr_simulation)/rviz/corridor.rviz" />
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
 
-  <!-- 键盘控制 -->
-  <node pkg="wpr_simulation" type="keyboard_vel_ctrl" name="keyboard_vel_ctrl" output="screen"/>
+  <!-- 运动控制 -->
+  <node pkg="rqt_robot_steering" type="rqt_robot_steering" name="rqt_robot_steering"/>
 
 </launch>
