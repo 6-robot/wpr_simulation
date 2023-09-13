@@ -276,6 +276,14 @@ target_link_libraries(demo_map_tool
   ${catkin_LIBRARIES}
 )
 
+add_executable(demo_waypoint_navi
+  src/demo_waypoint_navi.cpp
+)
+add_dependencies(demo_waypoint_navi ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(demo_waypoint_navi
+  ${catkin_LIBRARIES}
+)
+
 add_executable(demo_sr_navigation
   src/demo_sr_navigation.cpp
 )
