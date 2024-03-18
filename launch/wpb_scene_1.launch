@@ -40,6 +40,9 @@
   <!-- load the controllers of WPB_HOME -->
   <include file="$(find wpr_simulation)/launch/wpb_home_controllers.launch"/>
 
+  <!-- lidar filter-->
+  <node pkg="wpr_simulation" type="lidar_filter" name="lidar_filter" />
+
   <!-- wpb_home_behaviors -->
   <node pkg="wpb_home_behaviors" type="wpb_home_grab_server" name="wpb_home_grab_server" />
 
@@ -63,8 +66,8 @@
   <node pkg="move_base" type="move_base" respawn="false" name="move_base"  output="screen">
     <rosparam file="$(find wpb_home_tutorials)/nav_lidar/costmap_common_params.yaml" command="load" ns="global_costmap" />
     <rosparam file="$(find wpb_home_tutorials)/nav_lidar/costmap_common_params.yaml" command="load" ns="local_costmap" />
-    <rosparam file="$(find wpb_home_tutorials)/nav_lidar/local_costmap_params.yaml" command="load" />
     <rosparam file="$(find wpb_home_tutorials)/nav_lidar/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find wpb_home_tutorials)/nav_lidar/local_costmap_params.yaml" command="load" />
     <rosparam file="$(find wpb_home_tutorials)/nav_lidar/local_planner_params.yaml" command="load" />
     <param name="base_global_planner" value="global_planner/GlobalPlanner" /> 
     <param name="use_dijkstra" value="true"/>

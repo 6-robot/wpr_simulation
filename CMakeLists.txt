@@ -379,3 +379,11 @@ add_dependencies(teleop_js_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXP
 target_link_libraries(teleop_js_node
   ${catkin_LIBRARIES}
 )
+
+add_executable(lidar_filter
+  src/lidar_filter.cpp
+)
+add_dependencies(lidar_filter ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(lidar_filter
+  ${catkin_LIBRARIES}
+)
