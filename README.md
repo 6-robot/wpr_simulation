@@ -1,5 +1,17 @@
 # WPR系列机器人仿真工具
 
+## 配套视频课程
+![视频课程](./media/QR.jpg)
+Bilibili: [机器人操作系统ROS 快速入门教程](https://www.bilibili.com/video/BV1BP4y1o7pw/)  
+Youtube: [机器人操作系统ROS 快速入门教程](https://www.youtube.com/watch?v=Zs3ic0Im4D8&list=PLu0hA5NOMC0lZDGBkXwTb5NGUapAeUPPp)
+
+## 配套教材书籍
+1、机器人操作系统(ROS)及仿真应用（C++）  
+![视频课程](./media/book_1.jpg)
+
+2、轮式智能移动操作机器人技术与应用（Python）  
+![视频课程](./media/book_2.jpg)
+
 ## 系统版本
 
 - ROS Noetic (Ubuntu 20.04)
