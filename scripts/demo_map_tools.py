@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # coding=utf-8
 
 import rospy
@@ -22,6 +22,4 @@ if __name__ == "__main__":
     # 发送航点名称消息包
     navi_pub.publish(msg)
     # 构建循环让程序别退出，等待导航结果
-    rate = rospy.Rate(10)
-    while not rospy.is_shutdown():
-        rate.sleep()
+    ros.spin()
