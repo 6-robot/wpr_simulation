@@ -53,6 +53,8 @@ int main(int argc, char** argv)
 
   ros::NodeHandle n;
   ros::Publisher vel_pub = n.advertise<geometry_msgs::Twist>(ball_vel_topic, 10);
+  sleep(1.0);
+
   ros::Rate loop_rate(0.2);
   while(ros::ok())
   {
