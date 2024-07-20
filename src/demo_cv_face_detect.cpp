@@ -35,12 +35,11 @@
  @author     ZhangWanjie
  ********************************************************************/
 #include <ros/ros.h>
-#include <image_transport/image_transport.h>
 #include <cv_bridge/cv_bridge.h>
 #include <sensor_msgs/image_encodings.h>
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
-#include "opencv2/objdetect/objdetect.hpp"
+#include <opencv2/objdetect/objdetect.hpp>
 
 using namespace cv;
 
@@ -65,16 +64,14 @@ void callbackRGB(const sensor_msgs::Image msg)
 
     Mat imgOriginal = cv_ptr->image;
 
-    // change contrast: 0.5 = half  ; 2.0 = double
-    imgOriginal.convertTo(frame_gray, -1, 1.5, 0);
-
-    // create B&W image
-    cvtColor( frame_gray, frame_gray, CV_BGR2GRAY );
+    // 转换成黑白图像
+    cvtColor( imgOriginal, frame_gray, CV_BGR2GRAY );
 	equalizeHist( frame_gray, frame_gray );
 
-    //-- Detect faces
+    // 检测人脸
 	face_cascade.detectMultiScale( frame_gray, faces, 1.1, 9, 0|CASCADE_SCALE_IMAGE, Size(30, 30) );
 
+    // 在彩色原图中标注人脸位置
     if(faces.size() > 0)
     {
         std::vector<cv::Rect>::const_iterator i;
@@ -103,7 +100,7 @@ int main(int argc, char **argv)
     std::string strLoadFile;
     char const* home = getenv("HOME");
     strLoadFile = home;
-    strLoadFile += "/catkin_ws";    //工作空间目录
+    strLoadFile += "/catkin_ws";
     strLoadFile += "/src/wpr_simulation/config/haarcascade_frontalface_alt.xml";
 
     bool res = face_cascade.load(strLoadFile);
