@@ -69,8 +69,8 @@ def Cam_RGB_Callback(msg):
         cv2.line(cv_image, (target_x, target_y-10), (target_x, target_y+10), (255, 0, 0), 3)
         
         # 计算机器人运动速度
-        vel_forward = (image_height/2 - target_y) * 0.002
-        vel_turn = (image_width/2 - target_x) * 0.003
+        vel_forward = (image_height/2 - target_y) * 0.001
+        vel_turn = (image_width/2 - target_x) * 0.0005
         vel_cmd.linear.x = vel_forward
         vel_cmd.angular.z = vel_turn
     else:
